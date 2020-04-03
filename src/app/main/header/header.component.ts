@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  loginVisible = false;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  login() {
+    this.loginVisible = true;
   }
 
 }

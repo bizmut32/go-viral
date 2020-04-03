@@ -7,11 +7,11 @@
 			<span>Főoldal</span>
 		</div>
 		<div class="header-item">
-			<span>Rólunk</span>
+			<a href="#about"><span>Rólunk</span></a>
 		</div>
 	</nav>
 	<nav class="d-flex flex-column">
-		<div class="header-item login">
+		<div class="header-item login" (click)="login()">
 			<span>Bejelentkezés</span>
 		</div>
 		<div class="hedaer-item">
@@ -19,3 +19,4 @@
 		</div>
 	</nav>
 </div>
+<app-login [(visible)]="loginVisible"></app-login>

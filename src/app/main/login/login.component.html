@@ -1,0 +1,19 @@
+<div class="main-container" *ngIf="visible" @appear>
+  <div class="login-container">
+    <div class="close-button" (click)="close()">
+      <i class="material-icons">close</i>
+    </div>
+    <h2>Bejelentkezés</h2>
+    <form ngForm>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="input" placeholder="example@example.com" id="email" >
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="input" placeholder="Password..." id="password" >
+      </div>
+      <button class="button w-100 mt-4">Bejelentkezés</button>
+    </form>
+  </div>
+</div>

@@ -40,15 +40,18 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: inherit;
 }
+
 :root{
-  --blue: #00ad9f;
-  --light-blue: #00c2b2;
-  --dark-blue: #00a396;
-  --dark: rgb(66, 80, 102);
+  --yellow: #fab94c;
+  --yellow-dark: #f89c46;
+  --orange: #f67353;
+  --red: #f15d4a;
   --white: #f8fafb;
-  --red: rgb(190, 50, 50);
+
+  --blue: #4c8dfa;
+  --blue-dark: #624cfa;
   --shadow: 2px 2px 14px -3px #0007;
-  --header-height: 3rem;
+  --header-height: 4.2rem;
   --transition: all ease-in-out .2s;
   --gray: #0004;
   --light: #0002;
@@ -68,11 +71,11 @@ a, a:hover{
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--blue);
+  background: var(--yellow-dark);
   border: 0;
-  border-radius: 4px;
+  height: 3rem;
+  border-radius: 1.5rem;
   width: fit-content;
-  height: fit-content;
   padding: .5em 1.3em;
   font-weight: 600;
   color: var(--white);
@@ -81,18 +84,24 @@ a, a:hover{
   text-align: center;
   cursor: pointer;
   margin: 0;
+  white-space: nowrap;
+  min-width: fit-content;
+}
+
+.button.blue {
+  background: var(--blue-dark);
+}
+
+.button.blue:hover {
+  background: var(--blue);
 }
 
 .button:hover {
-  background-color: var(--light-blue);
+  background: var(--yellow);
 }
 
 .button:hover i.fa {
   animation: jump-right .4s ease;
-}
-
-.button:active {
-  background-color: var(--dark-blue);
 }
 
 .button:not(.absolute) i.fa{

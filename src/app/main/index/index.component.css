@@ -1,0 +1,101 @@
+.main-container {
+	position: relative;
+}
+
+.front-section {
+	position: relative;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	font-size: 1.2rem;
+	font-weight: 500;
+	overflow: visible;
+}
+
+.yellow-box {
+	position: absolute;
+	background: -webkit-radial-gradient(30%, var(--yellow), var(--orange));
+	top: -10vw;
+	right: -30vw;
+	width: 60vw;
+	height: 60vw;
+	transform: rotate(30deg);
+	border-radius: 10rem;
+}
+
+.front-section article {
+	padding: 3rem;
+}
+
+.front-section h1 {
+	font-weight: 800;
+	font-size: 5rem;
+}
+
+.card-container {
+	flex: 0 1 12rem;
+	margin: 0 1.5rem;
+	padding-bottom: 6rem;
+}
+
+.help-card {
+	box-shadow: var(--shadow);
+	border-radius: 2rem;
+	padding: .5rem;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	background-color: white;
+	justify-content: space-between;
+	height: 25rem;
+	transition: var(--transition);
+}
+
+.help-card:hover {
+	transform: scale(1.1);
+}
+
+.help-card .card-content {
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+}
+
+.help-card .title {
+	width: 100%;
+	text-align: center;
+	font-size: 1.3rem;
+	font-weight: 500;
+}
+
+.icon {
+	width: 8rem;
+	padding: 1rem;
+	height: 8rem;
+	border-radius: 4rem;
+	flex: 1;
+	display: flex;
+	align-items: center;
+	margin: 0;
+}
+
+.about-us {
+	padding: 6rem 0;
+	width: 100%;
+}
+
+.about-us h2 {
+	width: 100%;
+	text-align: center;
+	font-weight: 600;
+	font-size: 2.2rem;
+	margin-bottom: 2rem;
+}
+
+.about-us p {
+	font-size: 1.1rem;
+	text-align: center;
+}

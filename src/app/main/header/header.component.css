@@ -1,0 +1,38 @@
+.header-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: var(--header-height);
+	display: flex;
+	align-items: center;
+	padding: 0 5rem;
+	z-index: 5;
+	width: 100vw;
+	font-size: 1.1rem;
+	font-weight: 500;
+	display: flex;
+	justify-content: space-between;
+}
+
+.logo {
+	font-weight: 600;
+	font-size: 1.2em;
+}
+
+.header-item {
+	height: 100%;
+	padding: 0 1.3rem;
+	line-height: 0;
+	display: flex;
+	align-items: center;
+	transition: var(--transition);
+	cursor: pointer;
+}
+
+.header-item:hover {
+	color: var(--yellow-dark);
+}
+
+.login:hover {
+	color: var(--white);
+}

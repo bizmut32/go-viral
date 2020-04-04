@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Need, Needs, NeedUpdate, Towns, Offer, Offers, OfferUpdate, User, IdUsers, IdUser, IdUserUpdate } from '../model/api.model';
 import { Request } from '../model/request.model';
+import { toBase64String } from '@angular/compiler/src/output/source_map';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,10 @@ import { Request } from '../model/request.model';
 export class ServerService {
 
   constructor(private http: HttpClient) { }
+
+  authEncode(email: string, password: string) {
+    return btoa(email + ":" + password)
+  }
 
   getTowns(): Promise<Towns> {
     return new Request<Towns>(this.http).get('/towns');

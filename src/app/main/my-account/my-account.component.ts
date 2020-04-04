@@ -9,7 +9,7 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class MyAccountComponent implements OnInit {
 
-  constructor(private router: Router, private account: AccountService) { }
+  constructor(private router: Router, public account: AccountService) { }
 
   ngOnInit() {
   }

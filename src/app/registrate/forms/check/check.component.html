@@ -1,0 +1,54 @@
+<div class="main-container">
+  <section class="personal-section"*ngIf="result.personal">
+    <div class="personal-data">
+      <div class="profile-picture image-holder">
+        <img src="../../../../assets/user.png" alt="">
+      </div>
+      <span class="name">{{ result.personal.name }}</span>
+      <div class="row w-100 justify-content-center mb-4">
+        <div class="col-auto"><span><i class="fa fa-envelope mr-3"></i>{{ result.personal.email }}</span></div>
+        <div class="col-auto"><span><i class="fa fa-phone mr-3"></i>{{ result.personal.phone }}</span></div>
+        <div class="bio" *ngIf="result.bio && result.bio.bio">
+          {{ result.bio.bio }}
+        </div>
+        <iframe class="video w-100" *ngIf="result.bio && result.bio.video"
+          src="https://www.youtube.com/embed/tgbNymZ7vqY">
+        </iframe>
+      </div>
+
+      <section class="shopping-section" *ngIf="result.shopping">
+        <h3>Segítség {{ help ? 'nyújtás' : 'kérés' }} bevásárlásban</h3>
+        <div class="shopping-details col-md-7 col-sm-10">
+          <div class="detail">
+            <div class="icon"><i class="fa fa-home"></i></div>
+            <span class="detail-key">Irányítószáma</span>
+            <span class="detail-value">{{ result.shopping.zip }}</span>
+          </div>
+          <div class="detail">
+            <div class="icon"><i class="fa fa-calendar"></i></div>
+            <span class="detail-key">Rendszeresség</span>
+            <span class="detail-value">{{ displayShoppingFrequency(result.shopping.frequency) }}</span>
+          </div>
+          <div class="detail">
+            <div class="icon"><i class="fa fa-money"></i></div>
+            <span class="detail-key">Fizetési mód</span>
+            <span class="detail-value">{{ result.shopping.payment.transfer ? 'Átutalással' : '' }}
+              {{ result.shopping.payment.transfer &&  result.shopping.payment.cash ? ' vagy ' : '' }}
+              {{ result.shopping.payment.cash ? 'Készpénzzel' : ''  }}
+            </span>
+          </div>
+          <div class="detail" *ngIf="result.shopping.description">
+            <div class="icon"><i class="fa fa-edit"></i></div>
+            <span class="detail-key">Megjegyzés</span>
+            <span class="detail-value">{{ result.shopping.description }}
+            </span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</div>
+<nav class="navigation">
+  <button class="button gray" (click)="prev()">Vissza</button>
+  <button class="button" (click)="next()">Kész</button>
+</nav>

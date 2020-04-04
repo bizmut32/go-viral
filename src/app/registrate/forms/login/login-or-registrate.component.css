@@ -1,5 +1,5 @@
 .main-form {
-	padding: 2rem 0;
+	padding-top: 2rem;
 }
 
 label {
@@ -13,5 +13,12 @@ textarea.input {
 
 .navigation {
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
+	align-items: center;
+}
+
+.back {
+	position: absolute;
+	left: 4rem;
+	bottom: 1.5rem;
 }

@@ -1,0 +1,79 @@
+<form #form="ngForm" class="main-form">
+  <div class="form-group">
+    <label for="name">Név</label>
+    <div class="row w-100">
+      <div class="d-flex align-items-center col-md-12">
+        <app-form-alert message="Kötelező mező" [alerted]="form.controls.name && form.controls.name.invalid && form.controls.name.touched">
+          <input 
+            type="text" 
+            class="input w-100" 
+            id="name" 
+            placeholder="Mézga Géza"
+            name="name"
+            [(ngModel)]="personalData.name"
+            required
+          >
+        </app-form-alert>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="phone">Telefonszám</label>
+    <div class="row w-100">
+      <div class="d-flex align-items-center col-md-12">
+        <app-form-alert message="Kötelező mező" [alerted]="form.controls.phone && form.controls.phone.invalid && form.controls.phone.touched">
+          <input 
+            type="phone" 
+            class="input" 
+            id="phone" 
+            placeholder="06 30 123 4567"
+            name="phone"
+            [(ngModel)]="personalData.phone"
+            required
+          >
+        </app-form-alert>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email cím</label>
+    <div class="row w-100">
+      <div class="d-flex align-items-center col-md-12">
+        <app-form-alert message="Helytelen email cím" [alerted]="form.controls.email && form.controls.email.invalid && form.controls.email.touched">
+          <input 
+            type="email" 
+            class="input" 
+            id="email" 
+            placeholder="mezga.geza@email.com"
+            name="email"
+            [(ngModel)]="personalData.email"
+            required
+          >
+        </app-form-alert>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Jelszó</label>
+    <div class="row w-100">
+      <div class="d-flex align-items-center col-md-12">
+        <app-form-alert message="Túl rövid jelszó" [alerted]="form.controls.password && form.controls.password.invalid && form.controls.password.touched">
+          <input 
+            type="password" 
+            class="input" 
+            id="password" 
+            placeholder="Jelszó..."
+            name="password"
+            [(ngModel)]="personalData.password"
+            [minlength]=8
+            required
+          >
+        </app-form-alert>
+      </div>
+    </div>
+  </div>
+</form>
+<nav class="navigation">
+  <button class="button gray" (click)="prev()">Előző</button>
+  <button class="button" [ngClass]="{'disabled': form.invalid}" [disabled]="form.invalid" (click)="next()">Következő</button>
+</nav>

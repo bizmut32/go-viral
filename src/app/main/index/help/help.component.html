@@ -1,0 +1,23 @@
+<div class="padding"></div>
+<div class="main-container container p-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-sm-12">
+      <div class="registration-window">
+        <div class="icon image-holder">
+          <img src="../../../../assets/cart_hand.png" alt="">
+        </div>
+        <div class="form-content">
+          <div class="indicators-container">
+            <div class="indicators">
+              <div class="indicator" [ngClass]="{'active': i === currentStep, 'done': i < currentStep}" *ngFor="let step of steps; let i = index">
+                <div class="indicator-box"></div>
+                <span>{{ step.title }}</span>
+              </div>
+            </div>
+          </div>
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

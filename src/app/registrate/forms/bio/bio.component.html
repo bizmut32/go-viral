@@ -1,0 +1,33 @@
+<form #form="ngForm" class="main-form">
+  <div class="form-group flex-row">
+    <label for="description">Mesélhet magáról, a bizalom növelése érdekében</label>
+    <div class="d-flex">
+      <textarea  
+        class="input" 
+        id="description" 
+        value="-1"
+        name="description"
+        placeholder="Leírás..."
+        [(ngModel)]="description">
+      </textarea>
+    </div>
+  </div>
+  <div class="form-group flex-row">
+    <label>Szeretne gyorsan felvenni egy bemutatkozó videót?</label>
+    <div class="d-flex">
+      <button class="button mr-3" [ngClass]="{'gray': !videoVisible}" (click)="initializeCamera()">Igen</button>
+      <button class="button" [ngClass]="{'gray': videoVisible === undefined || videoVisible }" (click)="videoVisible = false">Nem</button>
+    </div>
+    <div class="video-container my-4" [ngStyle]="{'display': !videoVisible ? 'none' : 'flex'}">
+      <video class="camera-view" id="camera--view" autoplay playsinline #cameraView></video>
+      <div class="bottom">
+        <button class="record button red" (click)="toggleRecording()">{{ isRecording ? 'Kész' : ( recordingTime !== indefined ? 'Törlés és új készítése' : 'Felvétel indítása') }}</button>
+        <span *ngIf="recordingTime !== undefined">{{ recordingTime | time }}</span>
+      </div>
+    </div>
+  </div>
+</form>
+<nav class="navigation">
+  <button class="button gray" (click)="prev()">Előző</button>
+  <button class="button" [ngClass]="{'disabled': form.invalid}" [disabled]="form.invalid" (click)="next()">Következő</button>
+</nav>

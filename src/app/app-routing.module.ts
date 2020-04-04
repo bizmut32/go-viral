@@ -4,13 +4,29 @@ import { MainComponent } from './main/main.component';
 import { IndexComponent } from './main/index/index.component';
 import { RegistrateComponent } from './registrate/registrate.component';
 import { ShoppingComponent } from './registrate/forms/shopping/shopping.component';
+import { PersonalComponent } from './registrate/forms/personal/personal.component';
+import { BioComponent } from './registrate/forms/bio/bio.component';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { CheckComponent } from './registrate/forms/check/check.component';
+import { HelpComponent } from './main/index/help/help.component';
+import { LoginOrRegistrateComponent } from './registrate/forms/login/login-or-registrate.component';
 
 const routes: Routes = [
-  { path: '', component: MainComponent, pathMatch: 'prefix', children: [
-    { path: '', component: IndexComponent, pathMatch: 'full' },
-  ]},
   { path: 'registrate/:help/:category', component: RegistrateComponent, children: [
-    { path: 'shopping', component: ShoppingComponent }
+    { path: 'check', component: CheckComponent },
+    { path: 'shopping', component: ShoppingComponent },
+    { path: 'personal', component: PersonalComponent },
+    { path: 'bio', component: BioComponent }
+  ]},
+  { path: '', component: MainComponent, pathMatch: 'prefix', children: [
+    { path: '', component: IndexComponent },
+    { path: ':help/:category', component: HelpComponent, children: [
+      { path: 'check', component: CheckComponent },
+      { path: 'shopping', component: ShoppingComponent },
+      { path: 'personal', component: PersonalComponent },
+      { path: 'bio', component: BioComponent },
+      { path: 'login', component: LoginOrRegistrateComponent }
+    ]}
   ]}
 ];
 

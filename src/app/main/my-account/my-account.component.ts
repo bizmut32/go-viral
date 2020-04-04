@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
+import { User } from 'src/app/model/api.model';
 
 @Component({
   selector: 'app-my-account',
@@ -9,8 +10,10 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class MyAccountComponent implements OnInit {
 
-  constructor(private router: Router, public account: AccountService) { }
+  user: User;
+  constructor(private router: Router, public account: AccountService, private link: ActivatedRoute) { }
 
   ngOnInit() {
+    this.account.getUserData().then(userData => this.user = userData);
   }
 }

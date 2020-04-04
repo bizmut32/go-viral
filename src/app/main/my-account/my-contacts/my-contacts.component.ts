@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-my-contacts',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyContactsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private account: AccountService) { }
 
   ngOnInit() {
   }

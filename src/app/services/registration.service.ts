@@ -11,22 +11,6 @@ const registrationTypes: { [key: string]: RegistrationStep } = {
   check: { url: 'check', title: 'Ellenőrzés' }
 };
 
-const registrationSteps: {
-  [key: string]: {
-    help: RegistrationStep[],
-    need: RegistrationStep[]
-  }
-} = {
-  shopping: {
-    help: [ registrationTypes.shopping, registrationTypes.personal, registrationTypes.bio ],
-    need: [ registrationTypes.shopping, registrationTypes.personal, registrationTypes.bio ]
-  },
-  teaching: {
-    help: [ registrationTypes.teaching, registrationTypes.personal, registrationTypes.bio ],
-    need: [ registrationTypes.teaching, registrationTypes.personal, registrationTypes.bio ]
-  }
-};
-
 @Injectable({
   providedIn: 'root'
 })

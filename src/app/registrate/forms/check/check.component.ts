@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { RegistrationData } from 'src/app/model/registration.model';
+import { RegistrationData, PersonalData, UserData, BioData, ShoppingData } from 'src/app/model/registration.model';
 import { RegistrationService } from 'src/app/services/registration.service';
 import { ActivatedRoute } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
+import { ServerService } from 'src/app/services/server.service';
+import { User, Need } from 'src/app/model/api.model';
 
 @Component({
   selector: 'app-check',
@@ -10,10 +12,12 @@ import { AccountService } from 'src/app/services/account.service';
   styleUrls: ['./check.component.css']
 })
 export class CheckComponent implements OnInit {
-
   help: boolean;
   result: RegistrationData;
-  constructor(private link: ActivatedRoute, private registration: RegistrationService, public account: AccountService) {}
+  constructor(private link: ActivatedRoute,
+    private registration: RegistrationService,
+    public account: AccountService,
+    private server: ServerService) {}
 
   ngOnInit() {
     this.setRegistrationType(this.link.snapshot.parent.params);
@@ -24,15 +28,12 @@ export class CheckComponent implements OnInit {
     this.help = params.help === 'help';
   }
 
-  next() {
+  async next() {
     if (!this.account.loggedIn)
-      this.account.account = {
-        email: 'kjbwrfiebw',
-        password: 'password'
-      };
+      this.registrate();
     else {
-      alert('Thank you for your help');
-      console.log(this.account)
+      const userId = await this.account.getUserId();
+      this.uploadNeed(userId);
     }
   }
 
@@ -41,7 +42,7 @@ export class CheckComponent implements OnInit {
   }
 
   displayShoppingFrequency(n: number): string {
-    switch (n){
+    switch (n) {
       case 0: return 'egyszer';
       case 1: return 'naponta';
       case 2: return '2 naponta';
@@ -49,6 +50,49 @@ export class CheckComponent implements OnInit {
       case 7: return 'hetente';
       case 14: return 'ritkábban, mint hetente';
     }
+  }
+  async uploadNeed (userId: string) {
+    const shopping: ShoppingData = this.registration.registrationData.shopping;
+    const need: Need = {
+      user_id: userId,
+      type: 'shopping',
+      frequency: shopping.frequency,
+      location: {
+        zip: shopping.zip,
+        city: shopping.city
+      },
+      paymentMethod: shopping.payment.transfer ? 'transfer' : '' +
+        shopping.payment.transfer && shopping.payment.cash ? ',' : '' +
+        shopping.payment.cash ? 'cash' : '',
+      duration: 1,
+      description: shopping.description,
+      level: null,
+      subjects: null,
+      flatSpec: null
+    };
+    await this.server.postNeed(need);
+  }
+
+  async registrate() {
+    const person: UserData = this.registration.registrationData.personal;
+    const user: User = {
+      name: person.name,
+      email: person.email,
+      phone: person.phone,
+      password: person.password,
+      viewers: [],
+      pending: [],
+      birthday: '1998-12-31',
+      sex: 'male',
+      videourl: ''
+    };
+    this.account.account = {
+      email: person.email,
+      password: person.password
+    };
+    console.log(this.account.account);
+    const userId = await this.server.postUser(user);
+    this.uploadNeed(userId);
   }
 
 }

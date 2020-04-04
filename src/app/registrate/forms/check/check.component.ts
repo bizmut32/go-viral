@@ -43,12 +43,12 @@ export class CheckComponent implements OnInit {
 
   displayShoppingFrequency(n: number): string {
     switch (n){
-      case 0: return 'Egyszer';
-      case 1: return 'Naponta';
+      case 0: return 'egyszer';
+      case 1: return 'naponta';
       case 2: return '2 naponta';
-      case 3: return 'Hetente kétszer';
-      case 7: return 'Hetente';
-      case 14: return 'Ritkábban, mint hetente';
+      case 3: return 'hetente kétszer';
+      case 7: return 'hetente';
+      case 14: return 'ritkábban, mint hetente';
     }
   }
 

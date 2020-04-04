@@ -38,7 +38,13 @@
 }
 
 .user-name {
-	font-size: 1rem;
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
+.contact.detail .detail-value, .contact.detail .icon {
+	color: var(--red);
+	font-weight: 400;
 }
 
 .distance {
@@ -59,4 +65,23 @@
 
 .view-details {
 	transform: scale(.6);
+}
+
+.shopping-details {
+	padding: 1rem 0;
+}
+
+.detail {
+	display: flex;
+	align-items: center;
+}
+
+.detail .icon {
+	margin-right: 1rem;
+	font-size: 1.2rem;
+}
+
+.detail .detail-value {
+	margin-left: .6rem;
+	font-weight: 600;
 }

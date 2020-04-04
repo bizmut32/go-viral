@@ -3,6 +3,7 @@ import { RegistrationService } from '../services/registration.service';
 import { RegistrationStep, RegistrationType, Category, ShoppingData } from '../model/registration.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, Subject } from 'rxjs';
+import { ServerService } from '../services/server.service';
 
 @Component({
   selector: 'app-registrate',

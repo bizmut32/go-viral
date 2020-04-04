@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -22,6 +23,9 @@ import { HelpComponent } from './main/help/help.component';
 import { LoginOrRegistrateComponent } from './registrate/forms/login/login-or-registrate.component';
 import { MyAccountComponent } from './main/my-account/my-account.component';
 import { ShoppingHelpComponent } from './main/my-account/shopping-help/shopping-help.component';
+import { UserDetailsComponent } from './main/my-account/user-details/user-details.component';
+import { MyContactsComponent } from './main/my-account/my-contacts/my-contacts.component';
+import { NotificationsComponent } from './main/my-account/notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,10 @@ import { ShoppingHelpComponent } from './main/my-account/shopping-help/shopping-
     HelpComponent,
     LoginOrRegistrateComponent,
     MyAccountComponent,
-    ShoppingHelpComponent
+    ShoppingHelpComponent,
+    UserDetailsComponent,
+    MyContactsComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,

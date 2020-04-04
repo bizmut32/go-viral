@@ -3,7 +3,7 @@
 }
 
 .window {
-	position: absolute;
+	position: relative;
 	animation: appear 500ms;
 	display: flex;
 	justify-content: center;

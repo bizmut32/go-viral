@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SomeResult, Needs, NeedsUpdate, Towns, Offers, OffersUpdate } from '../model/api.model';
+import { Need, Needs, NeedUpdate, Towns, Offer, Offers, OfferUpdate, User, IdUsers, IdUser, IdUserUpdate } from '../model/api.model';
 import { Request } from '../model/request.model';
 
 @Injectable({
@@ -10,8 +10,6 @@ export class ServerService {
 
   constructor(private http: HttpClient) { }
 
-
-
   getTowns(): Promise<Towns> {
     return new Request<Towns>(this.http).get('/towns');
   }
@@ -19,41 +17,67 @@ export class ServerService {
   getTownsByZipcode(zipcode: string): Promise<Towns> {
     return new Request<Towns>(this.http).get(`/towns/${zipcode}`);
   }
-
-
-
-  postNeeds(needs: Needs): Promise<SomeResult> {
-    return new Request<SomeResult>(this.http).post('/needs', needs)
+  
+  
+  
+  postNeed(need: Need): Promise<any> {
+    return new Request<any>(this.http).post('/needs', need)
   }
 
   getNeeds(): Promise<Needs> {
     return new Request<Needs>(this.http).get('/needs');
   }
-
-  getNeedsById(id: string): Promise<Needs> {
+  
+  getNeedById(id: string): Promise<Need> {
     return new Request<Needs>(this.http).get(`/needs/${id}`);
   }
-
-  patchNeedsById(id: string, needs: NeedsUpdate): Promise<NeedsUpdate> {
-    return new Request<NeedsUpdate>(this.http).patch(`/needs/${id}`, needs);
+  
+  patchNeedById(id: string, need: NeedUpdate): Promise<any> {
+    return new Request<any>(this.http).patch(`/needs/${id}`, need);
   }
-
-
-
-  postOffers(offers: Offers): Promise<SomeResult> {
-    return new Request<SomeResult>(this.http).post('/offers', offers)
+  
+  
+  
+  postOffer(offer: Offer): Promise<any> {
+    return new Request<any>(this.http).post('/offers', offer)
   }
 
   getOffers(): Promise<Offers> {
     return new Request<Offers>(this.http).get('/offers');
   }
-
-  getOffersById(offerId: string): Promise<Offers> {
-    return new Request<Offers>(this.http).get(`/offers/${offerId}`);
+  
+  getOfferById(offerId: string): Promise<Offer> {
+    return new Request<Offer>(this.http).get(`/offers/${offerId}`);
   }
-
-  patchOffersById(offerId: string, offers: OffersUpdate): Promise<OffersUpdate> {
-    return new Request<OffersUpdate>(this.http).patch(`/offers/${offerId}`, offers);
+  
+  patchOfferById(offerId: string, offer: OfferUpdate): Promise<any> {
+    return new Request<any>(this.http).patch(`/offers/${offerId}`, offer);
   }
-
+  
+  
+  
+  postUser(user: User): Promise<string> {
+    return new Request<string>(this.http).post('/users', user)
+  }
+  
+  getUsers(authHeader: string): Promise<IdUsers> {
+    return new Request<IdUsers>(this.http).get('/users', authHeader);
+  }
+  
+  getUserById(authHeader: string, userId: string): Promise<IdUser> {
+    return new Request<IdUser>(this.http).get(`/users/${userId}`, authHeader);
+  }
+  
+  getUserMe(authHeader: string): Promise<IdUser> {
+    return new Request<IdUser>(this.http).get(`/users/me`, authHeader);
+  }
+  
+  patchUserMe(authHeader, me: IdUserUpdate): Promise<any> {
+    return new Request<any>(this.http).patch(`/users/me`, authHeader, me);
+  }
+  
+  postRequestAccessById(authHeader: string, userId: string): Promise<any> {
+    return new Request<any>(this.http).post(`/requestAccess/${userId}`, authHeader)
+  }
+  
 }

@@ -30,8 +30,8 @@ export interface Town {
     town_id: number;
     ksh_id: number;
     zipcode: number;
-    country_id: number;
-    country_name: string;
+    county_id: number;
+    county_name: string;
     town_name: string;
 }
 

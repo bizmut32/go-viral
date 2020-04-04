@@ -1,0 +1,63 @@
+.padding { padding-top: var(--header-height) }
+.account-navigation {
+	position: fixed;
+	width: 100%;
+	height: calc(100vh - var(--header-height) - 5rem);
+	background-color: white;
+	border-radius: 2rem;
+	box-shadow: var(--shadow);
+	padding: 0;
+}
+
+.account-picture-container {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	padding: 2rem;
+}
+
+.account-picture {
+	width: 8rem;
+	height: 8rem;
+	border-radius: 50%;
+	border: 1px solid var(--gray);
+	padding: 15%
+}
+
+.navigation {
+	width: 100%;
+}
+
+.navigation-item {
+	height: 3rem;
+	display: flex;
+	align-items: center;
+	padding: 0 1rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: var(--transition);
+}
+
+.navigation-item:hover {
+	background-color: var(--gray);
+}
+
+.navigation-item.active {
+	background-color: var(--yellow);
+	font-weight: 600;
+}
+
+.navigation-item .icon {
+	height: 2rem;
+	width: 2rem;
+	margin-right: 1rem;
+	background: white;
+	border-radius: 50%;
+	padding: .3rem;
+}
+
+.navigation-item i.fa {
+	width: 2rem;
+	text-align: center;
+	margin-right: 1rem;
+}

@@ -14,7 +14,7 @@
 		<div class="header-item login" (click)="login()" *ngIf="!account.loggedIn">
 			<span>Bejelentkezés</span>
 		</div>
-		<div class="header-item login" (click)="login()" *ngIf="account.loggedIn">
+		<div class="header-item login" routerLink="/my-account" *ngIf="account.loggedIn">
 			<span>Fiókom</span>
 		</div>
 		<div class="hedaer-item">

@@ -7,7 +7,7 @@ import { PersonalData } from '../model/registration.model';
 export class AccountService {
 
   get loggedIn(): boolean { return this.account !== null; }
-  account: PersonalData = null;
+  account: PersonalData = undefined;
 
   constructor() { }
 }

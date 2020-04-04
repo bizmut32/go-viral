@@ -14,10 +14,8 @@ export class PersonalComponent implements OnInit {
   help: boolean;
 
   personalData: PersonalData = {
-    name: '',
     email: '',
     password: '',
-    phone: ''
   };
 
   @ViewChild('form') form;

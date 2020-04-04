@@ -23,6 +23,7 @@ import { HelpComponent } from './main/help/help.component';
 import { LoginOrRegistrateComponent } from './registrate/forms/login/login-or-registrate.component';
 import { MyAccountComponent } from './main/my-account/my-account.component';
 import { ShoppingHelpComponent } from './main/my-account/shopping-help/shopping-help.component';
+import { HttpClientModule } from '@angular/common/http';
 import { UserDetailsComponent } from './main/my-account/user-details/user-details.component';
 import { MyContactsComponent } from './main/my-account/my-contacts/my-contacts.component';
 import { NotificationsComponent } from './main/my-account/notifications/notifications.component';
@@ -55,7 +56,8 @@ import { NotificationsComponent } from './main/my-account/notifications/notifica
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

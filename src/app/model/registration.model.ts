@@ -26,10 +26,8 @@ export interface ShoppingData {
     };
 }
 export interface PersonalData {
-    name: string;
     email: string;
     password: string;
-    phone: string;
 }
 
 export interface BioData {

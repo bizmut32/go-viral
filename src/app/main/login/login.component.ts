@@ -26,9 +26,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.account.account = {
-      name: 'Balassa Ádám',
       email: 'kjbwrfiebw',
-      phone: 'uwqhlfew',
       password: 'password'
     };
     this.router.navigateByUrl('/my-account');

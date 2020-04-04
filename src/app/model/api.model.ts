@@ -1,12 +1,3 @@
-export interface SomeResult {
-    errorSuccess: number;
-}
-
-export interface SomeResult2 {
-    errorSuccess: number;
-    id: string;
-}
-
 export interface Need {
     user_id: string;
     type: string;

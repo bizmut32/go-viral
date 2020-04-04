@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { animation } from 'src/app/components/animations';
 import { Subscription } from 'rxjs';
 import { RegistrationService } from 'src/app/services/registration.service';
-import { PersonalData } from 'src/app/model/registration.model';
+import { PersonalData, UserData } from 'src/app/model/registration.model';
 
 @Component({
   selector: 'app-personal',
@@ -13,9 +13,11 @@ import { PersonalData } from 'src/app/model/registration.model';
 export class PersonalComponent implements OnInit {
   help: boolean;
 
-  personalData: PersonalData = {
+  personalData: UserData = {
     email: '',
     password: '',
+    name: '',
+    phone: ''
   };
 
   @ViewChild('form') form;

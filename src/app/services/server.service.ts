@@ -23,8 +23,6 @@ export class ServerService {
     return new Request<Towns>(this.http).get(`/towns/${zipcode}`);
   }
 
-
-
   postNeed(need: Need): Promise<any> {
     return new Request<any>(this.http).post('/needs', need);
   }
@@ -41,8 +39,6 @@ export class ServerService {
     return new Request<any>(this.http).patch(`/needs/${id}`, need);
   }
 
-
-
   postOffer(offer: Offer): Promise<any> {
     return new Request<any>(this.http).post('/offers', offer);
   }
@@ -58,8 +54,6 @@ export class ServerService {
   patchOfferById(offerId: string, offer: OfferUpdate): Promise<any> {
     return new Request<any>(this.http).patch(`/offers/${offerId}`, offer);
   }
-
-
 
   postUser(user: User): Promise<string> {
     return new Request<string>(this.http).post('/users', user);

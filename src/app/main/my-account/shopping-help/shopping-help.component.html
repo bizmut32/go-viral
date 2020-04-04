@@ -1,54 +1,20 @@
 <div class="main-container container-fluid">
   <div class="row">
-    <div class="user-container col-xl-4 col-lg-6 col-md-12 col-sm-12">
+    <div class="user-container col-xl-4 col-lg-6 col-md-12 col-sm-12" *ngFor="let user of needs">
       <div class="user-icon"></div>
       <div class="user">
         <div class="user-icon image-holder">
           <img src="../../../../assets/user.png" alt="">
         </div>
-        <span class="frequency">Bevásárlás {{ displayShoppingFrequency(3) }}</span>
-        <span class="user-name">Férfi (65)</span>
+        <span class="frequency">Bevásárlás {{ displayShoppingFrequency(user.frequency) }}</span>
+        <span class="user-name">{{ user.sex == 'male' ? 'Férfi' : 'Nő' }}({{ getAge(user.birthday) }})</span>
         <span class="distance">Kevesebb, mint 2 km</span>
         <p class="description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sed augue a ex sagittis egestas. Proin mi diam, eleifend ac molestie in, fringilla tristique eros. Sed vitae ex et leo ultrices mattis.
+          {{ user.description }}
         </p>
-        <button class="button gray mb-1 view-details">További részletek</button>
-        <button class="button">Kontakt kérése</button>
+        <button class="button gray mb-1 view-details" [routerLink]="'user/' + user.user_id">További részletek</button>
+        <button class="button" (click)="request(user.user_id)">Kontakt kérése</button>
       </div>
     </div>
-    <div class="user-container col-xl-4 col-lg-6 col-md-12 col-sm-12">
-      <div class="user-icon"></div>
-      <div class="user">
-        <div class="user-icon image-holder">
-          <img src="../../../../assets/user.png" alt="">
-        </div>
-        <span class="frequency">Bevásárlás {{ displayShoppingFrequency(3) }}</span>
-        <span class="user-name">Férfi (65)</span>
-        <span class="distance">Kevesebb, mint 2 km</span>
-        <p class="description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sed augue a ex sagittis egestas. Proin mi diam, eleifend ac molestie in, fringilla tristique eros. Sed vitae ex et leo ultrices mattis.
-        </p>
-        <button class="button gray mb-1 view-details">További részletek</button>
-        <button class="button">Kontakt kérése</button>
-      </div>
-    </div>
-    <div class="user-container col-xl-4 col-lg-6 col-md-12 col-sm-12">
-      <div class="user-icon"></div>
-      <div class="user">
-        <div class="user-icon image-holder">
-          <img src="../../../../assets/user.png" alt="">
-        </div>
-        <span class="frequency">Bevásárlás {{ displayShoppingFrequency(3) }}</span>
-        <span class="user-name">Férfi (65)</span>
-        <span class="distance">Kevesebb, mint 2 km</span>
-        <p class="description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sed augue a ex sagittis egestas. Proin mi diam, eleifend ac molestie in, fringilla tristique eros. Sed vitae ex et leo ultrices mattis.
-        </p>
-        <button class="button gray mb-1 view-details" routerLink="user/userid">További részletek</button>
-        <button class="button">Kontakt kérése</button>
-      </div>
-    </div>
-    
   </div>
-  
 </div>

@@ -25,6 +25,15 @@ export interface ShoppingData {
         cash: boolean;
     };
 }
+
+export interface UserData {
+    name: string;
+    email: string;
+    password: string;
+    phone: string;
+    birthDate: Date;
+    sex: boolean;
+}
 export interface PersonalData {
     email: string;
     password: string;
@@ -39,7 +48,7 @@ export interface BioData {
 
 export interface RegistrationData {
     shopping?: ShoppingData;
-    personal?: PersonalData;
+    personal?: UserData;
     bio?: BioData;
     login?: LoginData
 }

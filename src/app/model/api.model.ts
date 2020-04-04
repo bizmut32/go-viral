@@ -2,7 +2,8 @@ export interface SomeResult {
     field: number;
 }
 
-export interface Needs {
+export interface Need {
+    user_id: string;
     type: string;
     frequency: number;
     duration: number;
@@ -14,7 +15,12 @@ export interface Needs {
     paymentMethod: string;
 }
 
-export interface NeedsUpdate {
+export interface Needs {
+    items: Need[];
+}
+
+export interface NeedUpdate {
+    user_id?: string;
     type?: string;
     frequency?: number;
     duration?: number
@@ -39,7 +45,8 @@ export interface Towns {
     items: Town[];
 }
 
-export interace Offers {
+export interace Offer {
+    user_id: string;
     type: string;
     description: string;
     location: any;
@@ -51,7 +58,12 @@ export interace Offers {
     skills: string[];
 }
 
-export interace OffersUpdate {
+export interface Offers {
+    items: Offer[];
+}
+
+export interace OfferUpdate {
+    user_id?: string;
     type?: string;
     description?: string;
     location?: any;

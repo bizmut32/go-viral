@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SomeResult, Needs, NeedsUpdate, Towns, Offers, OffersUpdate } from '../model/api.model';
+import { SomeResult, Need, Needs, NeedUpdate, Towns, Offer, Offers, OfferUpdate } from '../model/api.model';
 import { Request } from '../model/request.model';
 
 @Injectable({
@@ -22,38 +22,38 @@ export class ServerService {
   
   
   
-  postNeeds(needs: Needs): Promise<SomeResult> {
-    return new Request<SomeResult>(this.http).post('/needs', needs)
+  postNeed(need: Need): Promise<SomeResult> {
+    return new Request<SomeResult>(this.http).post('/needs', need)
   }
   
   getNeeds(): Promise<Needs> {
     return new Request<Needs>(this.http).get('/needs');
   }
   
-  getNeedsById(id: string): Promise<Needs> {
+  getNeedById(id: string): Promise<Need> {
     return new Request<Needs>(this.http).get(`/needs/${id}`);
   }
   
-  patchNeedsById(id: string, needs: NeedsUpdate): Promise<SomeResult> {
-    return new Request<NeedsUpdate>(this.http).patch(`/needs/${id}`, needs);
+  patchNeedById(id: string, need: NeedUpdate): Promise<SomeResult> {
+    return new Request<NeedUpdate>(this.http).patch(`/needs/${id}`, need);
   }
   
   
   
-  postOffers(offers: Offers): Promise<SomeResult> {
-    return new Request<SomeResult>(this.http).post('/offers', offers)
+  postOffer(offer: Offer): Promise<SomeResult> {
+    return new Request<SomeResult>(this.http).post('/offers', offer)
   }
   
   getOffers(): Promise<Offers> {
     return new Request<Offers>(this.http).get('/offers');
   }
   
-  getOffersById(offerId: string): Promise<Offers> {
-    return new Request<Offers>(this.http).get(`/offers/${offerId}`);
+  getOfferById(offerId: string): Promise<Offer> {
+    return new Request<Offer>(this.http).get(`/offers/${offerId}`);
   }
   
-  patchOffersById(offerId: string, offers: OffersUpdate): Promise<SomeResult> {
-    return new Request<OffersUpdate>(this.http).patch(`/offers/${offerId}`, offers);
+  patchOfferById(offerId: string, offer: OfferUpdate): Promise<SomeResult> {
+    return new Request<OfferUpdate>(this.http).patch(`/offers/${offerId}`, offer);
   }
   
 }

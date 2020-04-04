@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { animation } from 'src/app/components/animations';
 import { AccountService } from 'src/app/services/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   @Input() visible: boolean = true;
   @Output() visibleChange = new EventEmitter<boolean>();
 
-  constructor(private account: AccountService) { }
+  constructor(private account: AccountService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -30,6 +31,8 @@ export class LoginComponent implements OnInit {
       phone: 'uwqhlfew',
       password: 'password'
     };
+    this.router.navigateByUrl('/my-account');
+    this.close();
   }
 
 }

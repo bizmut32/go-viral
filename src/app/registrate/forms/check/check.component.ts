@@ -86,6 +86,11 @@ export class CheckComponent implements OnInit {
       sex: 'male',
       videourl: ''
     };
+    this.account.account = {
+      email: person.email,
+      password: person.password
+    };
+    console.log(this.account.account);
     const userId = await this.server.postUser(user);
     this.uploadNeed(userId);
   }

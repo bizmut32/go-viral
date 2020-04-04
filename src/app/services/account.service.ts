@@ -10,15 +10,20 @@ export class AccountService {
 
   get loggedIn(): boolean { return this.account !== null; }
   account: PersonalData;
+  userId: string;
 
   constructor(private server: ServerService) { }
 
   getUserId(): Promise<string> {
-    return this.server.getUserMe('').then(user => user._id);
+    if (this.userId) return Promise.resolve(this.userId);
+    return this.server.getUserMe(this.getAuthHeader()).then(user => {
+      if (!this.userId) this.userId = user._id;
+      return user._id;
+    });
   }
 
   getUserData(): Promise<User> {
-    return this.server.getUserMe('');
+    return this.server.getUserMe(this.getAuthHeader());
   }
 
   async getUsersNeeds(): Promise<Need[]> {
@@ -29,5 +34,13 @@ export class AccountService {
         need.type === myNeed.type &&
         (Math.abs(need.location.zip - myNeed.location.zip) < 500) || need.location.city === myNeed.location.city);
     return needsInMyCategory;
+  }
+
+  async getUsersContacts(): Promise<Need> {
+    return this.server.getUserContacts(await this.getUserId(), this.getAuthHeader());
+  }
+
+  private getAuthHeader(): string {
+    return this.server.authEncode(this.account.email, this.account.password);
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SomeData, SomeResult, SomeResult2 } from '../model/api.model';
+import { SomeResult, Needs, NeedsUpdate } from '../model/api.model';
 import { Request } from '../model/request.model';
 
 @Injectable({
@@ -9,12 +9,21 @@ import { Request } from '../model/request.model';
 export class ServerService {
 
   constructor(private http: HttpClient) { }
-
-  postSomeData(data: SomeData): Promise<SomeResult> {
-    return new Request<SomeResult>(this.http).post('/some/endpoint', data);
+  
+  postNeeds(needs: Needs): Promise<SomeResult> {
+    return new Request<SomeResult>(this.http).post('/needs', needs)
   }
-
-  getSomeData(): Promise<SomeResult2> {
-    return new Request<SomeResult2>(this.http).get('/some/other/endpoint');
+  
+  getNeeds(): Promise<Needs> {
+    return new Request<Needs>(this.http).get('/needs');
   }
+  
+  getNeedsById(id: string): Promise<Needs> {
+    return new Request<Needs>(this.http).get(`/needs/${id}`);
+  }
+  
+  patchNeedsById(id: string, needs: NeedsUpdate): Promise<SomeResult> {
+    return new Request<NeedsUpdate>(this.http).patch(`/needs/${id}`, needs);
+  }
+  
 }

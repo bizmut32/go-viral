@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-const API = 'http://goviral-htc.web.app/api/v1/';
+const API = 'https://goviral-htc.web.app/api/v1/';
 
 export class Request<ResultType = any> {
   private url: string;

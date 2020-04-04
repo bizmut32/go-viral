@@ -27,13 +27,12 @@ export class CheckComponent implements OnInit {
   next() {
     if (!this.account.loggedIn)
       this.account.account = {
-        name: 'Balassa Ádám',
         email: 'kjbwrfiebw',
-        phone: 'uwqhlfew',
         password: 'password'
       };
     else {
-      alert('Thanl you for your help');
+      alert('Thank you for your help');
+      console.log(this.account)
     }
   }
 

@@ -12,6 +12,9 @@ import { HelpComponent } from './main/help/help.component';
 import { LoginOrRegistrateComponent } from './registrate/forms/login/login-or-registrate.component';
 import { MyAccountComponent } from './main/my-account/my-account.component';
 import { ShoppingHelpComponent } from './main/my-account/shopping-help/shopping-help.component';
+import { UserDetailsComponent } from './main/my-account/user-details/user-details.component';
+import { MyContactsComponent } from './main/my-account/my-contacts/my-contacts.component';
+import { NotificationsComponent } from './main/my-account/notifications/notifications.component';
 
 const routes: Routes = [
   { path: 'registrate/:help/:category', component: RegistrateComponent, children: [
@@ -22,7 +25,10 @@ const routes: Routes = [
   ]},
   { path: '', component: MainComponent, pathMatch: 'prefix', children: [
     { path: 'my-account', component: MyAccountComponent, children: [
-      { path: 'shopping-help', component: ShoppingHelpComponent }
+      { path: 'shopping-help', component: ShoppingHelpComponent },
+      { path: 'shopping-help/user/:userid', component: UserDetailsComponent },
+      { path: 'contacts', component: MyContactsComponent },
+      { path: 'notifications', component: NotificationsComponent },
     ]},
     { path: '', component: IndexComponent },
     { path: ':help/:category', component: HelpComponent, children: [

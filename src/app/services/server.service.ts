@@ -10,8 +10,6 @@ export class ServerService {
 
   constructor(private http: HttpClient) { }
 
-
-
   getTowns(): Promise<Towns> {
     return new Request<Towns>(this.http).get('/towns');
   }
@@ -20,10 +18,8 @@ export class ServerService {
     return new Request<Towns>(this.http).get(`/towns/${zipcode}`);
   }
 
-
-
   postNeeds(needs: Needs): Promise<SomeResult> {
-    return new Request<SomeResult>(this.http).post('/needs', needs)
+    return new Request<SomeResult>(this.http).post('/needs', needs);
   }
 
   getNeeds(): Promise<Needs> {
@@ -38,10 +34,8 @@ export class ServerService {
     return new Request<NeedsUpdate>(this.http).patch(`/needs/${id}`, needs);
   }
 
-
-
   postOffers(offers: Offers): Promise<SomeResult> {
-    return new Request<SomeResult>(this.http).post('/offers', offers)
+    return new Request<SomeResult>(this.http).post('/offers', offers);
   }
 
   getOffers(): Promise<Offers> {

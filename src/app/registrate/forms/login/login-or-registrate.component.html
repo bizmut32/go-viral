@@ -40,6 +40,6 @@
 <nav class="navigation">
   <button class="button" [ngClass]="{'disabled': form.invalid}" [disabled]="form.invalid" (click)="login()">Belépés</button>
   <span class="my-3">Nincs fiókja?</span>
-  <button class="button red" [ngClass]="{'disabled': form.invalid}" [disabled]="form.invalid" (click)="registrate()">Regisztráció</button>
+  <button class="button red" (click)="registrate()">Regisztráció</button>
   <button class="gray button back" (click)="prev()">Vissza</button>
 </nav>

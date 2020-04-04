@@ -1,6 +1,7 @@
 .main-container {
 	padding: 0 5rem;
 }
+
 .user-container {
 	margin-bottom: 5rem;
 	position: relative;
@@ -47,7 +48,7 @@
 
 .description {
 	font-size: .9rem;
-	padding: .5rem 1rem;
+	padding: .5rem 0;
 	width: 100%;
 	text-align: justify;
 }
@@ -59,4 +60,32 @@
 
 .view-details {
 	transform: scale(.6);
+}
+
+.video {
+	width: 100%;
+	margin: 0;
+	height: 30vh;
+	border: 0;
+	border-radius: 2rem;
+}
+
+.details {
+	margin-bottom: 2rem;
+	font-size: .85rem;
+}
+
+.detail {
+	display: flex;
+	align-items: center;
+}
+
+.detail .icon {
+	margin-right: 1rem;
+	font-size: 1.2rem;
+}
+
+.detail .detail-value {
+	margin-left: .6rem;
+	font-weight: 600;
 }

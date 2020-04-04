@@ -5,23 +5,17 @@ import { Subscription } from 'rxjs';
 import { RegistrationService } from 'src/app/services/registration.service';
 
 @Component({
-  selector: 'app-shopping',
-  templateUrl: './shopping.component.html',
-  styleUrls: ['./shopping.component.css'],
-  animations: [ animation() ]
+  selector: 'app-personal',
+  templateUrl: './personal.component.html',
+  styleUrls: ['./personal.component.css']
 })
-export class ShoppingComponent implements OnInit {
-
+export class PersonalComponent implements OnInit {
   help: boolean;
 
-  zip: string;
-  city: string = '';
-  frequency: number = -1;
-  payment = {
-    transfer: true,
-    cash: true
-  };
-  description: string;
+  name: string;
+  email: string;
+  password: string;
+  phone: string;
 
   @ViewChild('form') form;
   constructor(private link: ActivatedRoute, private registration: RegistrationService) {}
@@ -34,21 +28,15 @@ export class ShoppingComponent implements OnInit {
     this.help = params.help === 'help';
   }
 
-  zipChanged() {
-    if (this.zip.length === 4)
-      this.city = 'Budapest';
-    else this.city = '';
-  }
-
   next() {
-    this.registration.registrationData.shopping = {
-      zip: this.zip, frequency: this.frequency, payment: this.payment, description: this.description 
+    this.registration.registrationData.personal = {
+      name: this.name, email: this.email, password: this.password, phone: this.phone
     };
+
     this.registration.next.next();
   }
 
   prev() {
     this.registration.prev.next();
   }
-
 }

@@ -130,6 +130,11 @@ a, a:hover{
   white-space: nowrap;
 }
 
+.button.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
 
 .input {
   outline: 0;

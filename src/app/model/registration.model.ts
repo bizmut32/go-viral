@@ -13,6 +13,28 @@ export interface RegistrationType {
 export interface ShoppingData {
     zip: string;
     frequency: number;
-    recurrent: boolean;
-    description: string;
+    description?: string;
+    payment: {
+        transfer: boolean;
+        cash: boolean;
+    };
+}
+export interface PersonalData {
+    name: string;
+    email: string;
+    password: string;
+    phone: string;
+}
+
+export interface BioData {
+    bio?: string;
+    video?: {
+        length: number;
+    };
+}
+
+export interface RegistrationData {
+    shopping?: ShoppingData;
+    personal?: PersonalData;
+    bio?: BioData;
 }

@@ -1,9 +1,9 @@
-<form ngForm class="main-form">
+<form #form="ngForm" class="main-form">
   <div class="form-group">
-    <label for="zip">{{ help ? 'Hol tudna segíteni?' : 'Hol kérne segítséget' }}</label>
+    <label for="zip">{{ help ? 'Hol tudna segíteni?' : 'Hol kérne segítséget?' }}</label>
     <div class="row w-100">
       <div class="d-flex align-items-center col-md-7">
-        <app-form-alert message="Hibás irányítószám" [alerted]="false">
+        <app-form-alert message="Hibás irányítószám" [alerted]="form.controls.zip && form.controls.zip.invalid && form.controls.zip.touched">
               <input 
                 type="text" 
                 class="input" 
@@ -12,6 +12,9 @@
                 name="zip"
                 [(ngModel)]="zip"
                 (keyup)="zipChanged()"
+                required
+                [minlength]="4"
+                [maxlength]="4"
               >
               <label class="ml-3 my-0" @appear *ngIf="city.length > 0">{{ city }}</label>  
         </app-form-alert>
@@ -20,7 +23,7 @@
   </div>
   <div class="form-group">
     <label for="frequency">{{ help ? 'Nagyjából milyen gyakran tudna segteni?' : 'Nagyjából miylen gyakran lenne szüksége segítségre?' }}</label>
-    <app-form-alert message="Kötelező mező" [alerted]="true">
+    <app-form-alert message="Kötelező mező" [alerted]="form.controls.frequency && form.controls.frequency.invalid && form.controls.frequency.touched">
       <div class="row w-100">
         <div class="d-flex col-md-7">
           <select 
@@ -29,6 +32,7 @@
           id="frequency" 
           value="-1"
           name="frequency"
+          required
           [(ngModel)]="frequency">
             <option value="-1">Kérjük válasszon...</option>
             <option value="0">Egyszer</option>
@@ -48,11 +52,11 @@
     <app-form-alert message="Kötelező mező" [alerted]="false">
       <div class="row w-100">
         <div class="col-auto">
-          <input type="checkbox" name="" id="cash" [(ngModel)]="payment.cash" [checked]="payment.cash">
+          <input type="checkbox" name="" id="cash" name="cash" [(ngModel)]="payment.cash" [checked]="payment.cash">
           <label for="cash" class="form-check-label">Készpénzzel</label>
         </div>
         <div class="col-auto">
-          <input type="checkbox" name="" id="transfer" [(ngModel)]="payment.transfer" [checked]="payment.cash">
+          <input type="checkbox" name="" id="transfer" name="transfer" [(ngModel)]="payment.transfer" [checked]="payment.transfer">
           <label for="transfer" class="form-check-label">Átutalással</label>
         </div>
       </div>
@@ -72,3 +76,7 @@
     </div>
   </div>
 </form>
+<nav class="navigation">
+  <button class="button gray" (click)="prev()">Előző</button>
+  <button class="button" [ngClass]="{'disabled': form.invalid}" [disabled]="form.invalid" (click)="next()">Következő</button>
+</nav>

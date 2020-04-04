@@ -3,7 +3,6 @@
 	border-radius: 1.5rem;
 	box-shadow: var(--shadow);
 	width: 100%;
-	min-height: 50vh;
 	padding: 3rem;
 	display: flex;
 	flex-direction: column;
@@ -85,10 +84,6 @@
 	flex: 1;
 }
 
-.navigation {
-	display: flex;
-	justify-content: space-between;
-}
 
 .material-icons {
 	transform: scale(1.2);

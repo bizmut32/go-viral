@@ -1,15 +1,15 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { RegistrationService } from '../services/registration.service';
-import { RegistrationStep, RegistrationType, Category, ShoppingData } from '../model/registration.model';
+import { Component, OnInit } from '@angular/core';
+import { RegistrationStep, RegistrationType, ShoppingData, Category } from 'src/app/model/registration.model';
+import { Subscription } from 'rxjs';
+import { RegistrationService } from 'src/app/services/registration.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription, Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-registrate',
-  templateUrl: './registrate.component.html',
-  styleUrls: ['./registrate.component.css']
+  selector: 'app-help',
+  templateUrl: './help.component.html',
+  styleUrls: ['./help.component.css']
 })
-export class RegistrateComponent implements OnInit, OnDestroy {
+export class HelpComponent implements OnInit {
   steps: RegistrationStep[];
   registrationType: RegistrationType;
   subscriptions: Subscription[] = [];
@@ -32,6 +32,11 @@ export class RegistrateComponent implements OnInit, OnDestroy {
     this.subscriptions.push( this.registrationService.prev.subscribe(() => {
       this.prev();
     }));
+
+    this.subscriptions.push( this.registrationService.registrate.subscribe(() => {
+      this.steps = this.registrationService.getSteps(this.registrationType.category, false);
+      this.loadForm();
+    }));
   }
 
   prev() {
@@ -41,15 +46,13 @@ export class RegistrateComponent implements OnInit, OnDestroy {
   }
 
   next() {
-    console.log('next');
     if (this.currentStep === this.steps.length - 1) return;
     this.currentStep++;
     this.loadForm();
   }
 
   setRegistrationSteps() {
-    // this.steps = this.registrationService.getSteps(this.registrationType);
-    this.steps.push({ url: 'check', 'title': 'Adatok ellenőrzése' });
+    this.steps = this.registrationService.getSteps(this.registrationType.category);
   }
 
   setRegistrationType(params) {

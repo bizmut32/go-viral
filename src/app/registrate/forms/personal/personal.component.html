@@ -10,7 +10,7 @@
             id="name" 
             placeholder="Mézga Géza"
             name="name"
-            [(ngModel)]="name"
+            [(ngModel)]="personalData.name"
             required
           >
         </app-form-alert>
@@ -28,7 +28,7 @@
             id="phone" 
             placeholder="06 30 123 4567"
             name="phone"
-            [(ngModel)]="phone"
+            [(ngModel)]="personalData.phone"
             required
           >
         </app-form-alert>
@@ -46,7 +46,7 @@
             id="email" 
             placeholder="mezga.geza@email.com"
             name="email"
-            [(ngModel)]="email"
+            [(ngModel)]="personalData.email"
             required
           >
         </app-form-alert>
@@ -64,7 +64,7 @@
             id="password" 
             placeholder="Jelszó..."
             name="password"
-            [(ngModel)]="password"
+            [(ngModel)]="personalData.password"
             [minlength]=8
             required
           >

@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { animation } from 'src/app/components/animations';
 import { Subscription } from 'rxjs';
 import { RegistrationService } from 'src/app/services/registration.service';
-import { clearInterval } from 'timers';
 
 @Component({
   selector: 'app-bio',
@@ -14,7 +13,7 @@ import { clearInterval } from 'timers';
 export class BioComponent implements OnInit {
   help: boolean;
 
-  description: string;
+  description: string = '';
   videoVisible: boolean;
   isRecording: boolean;
   recordingTime: number;

@@ -1,0 +1,24 @@
+.main-form {
+	padding-top: 2rem;
+}
+
+label {
+	font-weight: 600;
+}
+
+textarea.input {
+	height: 5rem;
+	padding: .8rem 1.2rem;
+}
+
+.navigation {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.back {
+	position: absolute;
+	left: 4rem;
+	bottom: 1.5rem;
+}

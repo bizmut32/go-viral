@@ -6,7 +6,9 @@ const registrationTypes: { [key: string]: RegistrationStep } = {
   personal: { url: 'personal', title: 'Személyes adatok' },
   bio: { url: 'bio', title: 'Bemutatkozás' },
   shopping: { url: 'shopping', title: 'Bevásárlás' },
-  teaching: { url: 'teaching', title: 'Tanítás' }
+  login: { url: 'login', title: 'Belépés' },
+  teaching: { url: 'teaching', title: 'Tanítás' },
+  check: { url: 'check', title: 'Ellenőrzés' }
 };
 
 const registrationSteps: {
@@ -31,12 +33,16 @@ const registrationSteps: {
 export class RegistrationService {
   next = new Subject();
   prev = new Subject();
+  registrate = new Subject();
 
   registrationData: RegistrationData = {};
 
   constructor() { }
 
-  getSteps(category: RegistrationType): RegistrationStep[] {
-    return category.help ? registrationSteps[category.category].help : registrationSteps[category.category].need;
+  getSteps(category: Category, isLoggedIn = true): RegistrationStep[] {
+    if (isLoggedIn)
+      return [ registrationTypes[category], registrationTypes.login, registrationTypes.check ];
+    else
+      return [ registrationTypes[category], registrationTypes.personal, registrationTypes.bio, registrationTypes.check ];
   }
 }

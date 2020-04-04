@@ -1,0 +1,45 @@
+<form #form="ngForm" class="main-form">
+  <div class="form-group mb-0">
+    <label for="email">Email cím</label>
+    <div class="row w-100">
+      <div class="d-flex align-items-center col-md-12">
+        <app-form-alert message="Helytelen email cím" [alerted]="form.controls.email && form.controls.email.invalid && form.controls.email.touched">
+          <input 
+            type="email" 
+            class="input" 
+            id="email" 
+            placeholder="mezga.geza@email.com"
+            name="email"
+            [(ngModel)]="loginData.email"
+            required
+          >
+        </app-form-alert>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Jelszó</label>
+    <div class="row w-100">
+      <div class="d-flex align-items-center col-md-12">
+        <app-form-alert message="Túl rövid jelszó" [alerted]="form.controls.password && form.controls.password.invalid && form.controls.password.touched">
+          <input 
+            type="password" 
+            class="input" 
+            id="password" 
+            placeholder="Jelszó..."
+            name="password"
+            [(ngModel)]="loginData.password"
+            [minlength]=8
+            required
+          >
+        </app-form-alert>
+      </div>
+    </div>
+  </div>
+</form>
+<nav class="navigation">
+  <button class="button" [ngClass]="{'disabled': form.invalid}" [disabled]="form.invalid" (click)="login()">Belépés</button>
+  <span class="my-3">Nincs fiókja?</span>
+  <button class="button red" [ngClass]="{'disabled': form.invalid}" [disabled]="form.invalid" (click)="registrate()">Regisztráció</button>
+  <button class="gray button back" (click)="prev()">Vissza</button>
+</nav>

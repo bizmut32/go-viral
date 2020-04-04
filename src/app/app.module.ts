@@ -18,6 +18,8 @@ import { PersonalComponent } from './registrate/forms/personal/personal.componen
 import { BioComponent } from './registrate/forms/bio/bio.component';
 import { TimePipe } from './pipes/time.pipe';
 import { CheckComponent } from './registrate/forms/check/check.component';
+import { HelpComponent } from './main/index/help/help.component';
+import { LoginOrRegistrateComponent } from './registrate/forms/login/login-or-registrate.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { CheckComponent } from './registrate/forms/check/check.component';
     PersonalComponent,
     BioComponent,
     TimePipe,
-    CheckComponent
+    CheckComponent,
+    HelpComponent,
+    LoginOrRegistrateComponent
   ],
   imports: [
     BrowserModule,

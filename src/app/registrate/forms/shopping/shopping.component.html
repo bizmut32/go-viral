@@ -10,13 +10,13 @@
                 id="zip" 
                 placeholder="Irányítószám"
                 name="zip"
-                [(ngModel)]="zip"
+                [(ngModel)]="shoppingData.zip"
                 (keyup)="zipChanged()"
                 required
                 [minlength]="4"
                 [maxlength]="4"
               >
-              <label class="ml-3 my-0" @appear *ngIf="city.length > 0">{{ city }}</label>  
+              <label class="ml-3 my-0" @appear *ngIf="shoppingData.city.length > 0">{{ shoppingData.city }}</label>  
         </app-form-alert>
       </div>
     </div>
@@ -33,7 +33,7 @@
           value="-1"
           name="frequency"
           required
-          [(ngModel)]="frequency">
+          [(ngModel)]="shoppingData.frequency">
             <option value="-1">Kérjük válasszon...</option>
             <option value="0">Egyszer</option>
             <option value="1">Naponta</option>
@@ -52,11 +52,11 @@
     <app-form-alert message="Kötelező mező" [alerted]="false">
       <div class="row w-100">
         <div class="col-auto">
-          <input type="checkbox" name="" id="cash" name="cash" [(ngModel)]="payment.cash" [checked]="payment.cash">
+          <input type="checkbox" name="" id="cash" name="cash" [(ngModel)]="shoppingData.payment.cash" [checked]="shoppingData.payment.cash">
           <label for="cash" class="form-check-label">Készpénzzel</label>
         </div>
         <div class="col-auto">
-          <input type="checkbox" name="" id="transfer" name="transfer" [(ngModel)]="payment.transfer" [checked]="payment.transfer">
+          <input type="checkbox" name="" id="transfer" name="transfer" [(ngModel)]="shoppingData.payment.transfer" [checked]="shoppingData.payment.transfer">
           <label for="transfer" class="form-check-label">Átutalással</label>
         </div>
       </div>
@@ -71,12 +71,11 @@
       value="-1"
       name="description"
       placeholder="Pl: Csak vasárnap érek rá"
-      [(ngModel)]="description">
+      [(ngModel)]="shoppingData.description">
   </textarea>
     </div>
   </div>
 </form>
-<nav class="navigation">
-  <button class="button gray" (click)="prev()">Előző</button>
+<nav class="navigation" style="justify-content: flex-end;">
   <button class="button" [ngClass]="{'disabled': form.invalid}" [disabled]="form.invalid" (click)="next()">Következő</button>
 </nav>

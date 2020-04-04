@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { animation } from 'src/app/components/animations';
 import { Subscription } from 'rxjs';
 import { RegistrationService } from 'src/app/services/registration.service';
+import { ShoppingData } from 'src/app/model/registration.model';
 
 @Component({
   selector: 'app-shopping',
@@ -14,12 +15,16 @@ export class ShoppingComponent implements OnInit {
 
   help: boolean;
 
-  zip: string;
-  city: string = '';
-  frequency: number = -1;
-  payment = {
-    transfer: true,
-    cash: true
+
+  shoppingData: ShoppingData = {
+    zip: '',
+    city: '',
+    frequency: -1,
+    payment: {
+      transfer: true,
+      cash: true
+    },
+    description: ''
   };
   description: string;
 
@@ -28,6 +33,9 @@ export class ShoppingComponent implements OnInit {
 
   ngOnInit() {
     this.setRegistrationType(this.link.snapshot.parent.params);
+    if (this.registration.registrationData.shopping) {
+      this.shoppingData = { ...this.registration.registrationData.shopping };
+    }
   }
 
   setRegistrationType(params) {
@@ -35,15 +43,13 @@ export class ShoppingComponent implements OnInit {
   }
 
   zipChanged() {
-    if (this.zip.length === 4)
-      this.city = 'Budapest';
-    else this.city = '';
+    if (this.shoppingData.zip.length === 4)
+      this.shoppingData.city = 'Budapest';
+    else this.shoppingData.city = '';
   }
 
   next() {
-    this.registration.registrationData.shopping = {
-      zip: this.zip, frequency: this.frequency, payment: this.payment, description: this.description 
-    };
+    this.registration.registrationData.shopping = this.shoppingData;
     this.registration.next.next();
   }
 

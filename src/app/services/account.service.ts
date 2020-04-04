@@ -9,7 +9,7 @@ import { Need, User, Needs } from '../model/api.model';
 export class AccountService {
 
   get loggedIn(): boolean { return this.account !== null; }
-  account: PersonalData = null;
+  account: PersonalData;
 
   constructor(private server: ServerService) { }
 

@@ -9,7 +9,7 @@ import { AccountService } from 'src/app/services/account.service';
 export class HeaderComponent implements OnInit {
 
   loginVisible = false;
-  constructor(private account: AccountService) { }
+  constructor(public account: AccountService) { }
 
   ngOnInit() {
   }

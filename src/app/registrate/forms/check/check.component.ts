@@ -13,7 +13,7 @@ export class CheckComponent implements OnInit {
 
   help: boolean;
   result: RegistrationData;
-  constructor(private link: ActivatedRoute, private registration: RegistrationService, private account: AccountService) {}
+  constructor(private link: ActivatedRoute, private registration: RegistrationService, public account: AccountService) {}
 
   ngOnInit() {
     this.setRegistrationType(this.link.snapshot.parent.params);

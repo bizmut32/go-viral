@@ -1,19 +1,19 @@
 <div class="main-container container-fluid">
   <div class="row">
-    <div class="user-container col-xl-4 col-lg-6 col-md-12 col-sm-12" *ngFor="let user of needs">
+    <div class="user-container col-xl-4 col-lg-6 col-md-12 col-sm-12" *ngFor="let need of needs">
       <div class="user-icon"></div>
       <div class="user">
         <div class="user-icon image-holder">
           <img src="../../../../assets/user.png" alt="">
         </div>
-        <span class="frequency">Bevásárlás {{ displayShoppingFrequency(user.frequency) }}</span>
-        <span class="user-name">{{ user.sex == 'male' ? 'Férfi' : 'Nő' }}({{ getAge(user.birthday) }})</span>
+        <span class="frequency">Bevásárlás {{ displayShoppingFrequency(need.frequency) }}</span>
+        <span class="user-name">{{ need.user.sex == 'male' ? 'Férfi' : 'Nő' }} ({{ getAge(need.user.birthday) }})</span>
         <span class="distance">Kevesebb, mint 2 km</span>
         <p class="description">
-          {{ user.description }}
+          {{ need.description }}
         </p>
-        <button class="button gray mb-1 view-details" [routerLink]="'user/' + user.user_id">További részletek</button>
-        <button class="button" (click)="request(user.user_id)">Kontakt kérése</button>
+        <button class="button gray mb-1 view-details" [routerLink]="'user/' + need.user_id">További részletek</button>
+        <button class="button" (click)="request(need.user_id)">Kontakt kérése</button>
       </div>
     </div>
   </div>

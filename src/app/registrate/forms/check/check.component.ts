@@ -4,7 +4,7 @@ import { RegistrationService } from 'src/app/services/registration.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
 import { ServerService } from 'src/app/services/server.service';
-import { User, Need } from 'src/app/model/api.model';
+import { User, Need, Offer } from 'src/app/model/api.model';
 
 @Component({
   selector: 'app-check',
@@ -32,16 +32,21 @@ export class CheckComponent implements OnInit {
 
   async next() {
     this.loading = true;
-    if (!this.account.loggedIn)
+    if (!this.account.loggedIn || this.account.account.email === this.registration.registrationData.login.email)
       this.registrate();
     else {
       const userId = await this.account.getUserId();
-      this.uploadNeed(userId);
+      this.uploadOffer(userId);
     }
   }
 
   prev() {
     this.registration.prev.next();
+  }
+
+  upload(userId: string) {
+    if (this.help) this.uploadOffer(userId);
+    else this.uploadNeed(userId);
   }
 
   displayShoppingFrequency(n: number): string {
@@ -54,6 +59,30 @@ export class CheckComponent implements OnInit {
       case 14: return 'ritkábban, mint hetente';
     }
   }
+  async uploadOffer (userId: string) {
+    const shopping: ShoppingData = this.registration.registrationData.shopping;
+    const offer: Offer = {
+      user_id: userId,
+      type: 'shopping',
+      location: {
+        zip: shopping.zip,
+        city: shopping.city
+      },
+      paymentMethod: shopping.payment.transfer ? 'transfer' : '' +
+        shopping.payment.transfer && shopping.payment.cash ? ',' : '' +
+        shopping.payment.cash ? 'cash' : '',
+      description: shopping.description,
+      level: null,
+      flatSpec: null,
+      hasCar: false,
+      experience: '',
+      skills: []
+    };
+    await this.server.postOffer(offer);
+    this.loading = false;
+    this.router.navigateByUrl('/my-account');
+  }
+
   async uploadNeed (userId: string) {
     const shopping: ShoppingData = this.registration.registrationData.shopping;
     const need: Need = {
@@ -96,7 +125,7 @@ export class CheckComponent implements OnInit {
       password: person.password
     };
     const userId = await this.server.postUser(user);
-    this.uploadNeed(userId._id);
+    this.upload(userId._id);
   }
 
 }

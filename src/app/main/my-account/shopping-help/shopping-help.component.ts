@@ -20,11 +20,15 @@ export class ShoppingHelpComponent implements OnInit {
   async initNeeds() {
     this.loading = true;
     this.needs = await this.account.getUsersNeeds();
+    console.log(this.needs);
+    console.log(this.displayShoppingFrequency(this.needs[0].frequency));
     this.loading = false;
   }
 
-  displayShoppingFrequency(n: number): string {
+  displayShoppingFrequency(n: any): string {
+    n = parseInt(n);
     switch (n) {
+      case -1: return 'egyszer';
       case 0: return 'egyszer';
       case 1: return 'naponta';
       case 2: return '2 naponta';

@@ -13,5 +13,4 @@ export class MyAccountComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

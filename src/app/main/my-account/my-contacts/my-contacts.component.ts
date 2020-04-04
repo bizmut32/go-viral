@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from 'src/app/services/account.service';
 
 @Component({
-  selector: 'app-shopping-help',
-  templateUrl: './shopping-help.component.html',
-  styleUrls: ['./shopping-help.component.css']
+  selector: 'app-my-contacts',
+  templateUrl: './my-contacts.component.html',
+  styleUrls: ['./my-contacts.component.css']
 })
-export class ShoppingHelpComponent implements OnInit {
+export class MyContactsComponent implements OnInit {
 
-  constructor(private account: AccountService) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
   displayShoppingFrequency(n: number): string {
-    switch (n){
+    switch (n) {
       case 0: return 'egyszer';
       case 1: return 'naponta';
       case 2: return '2 naponta';

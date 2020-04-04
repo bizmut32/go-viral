@@ -1,6 +1,7 @@
 .padding { padding-top: var(--header-height) }
 .account-navigation {
-	position: fixed;
+	position: sticky;
+	top: 2rem;
 	width: 100%;
 	height: calc(100vh - var(--header-height) - 5rem);
 	background-color: white;
@@ -21,7 +22,21 @@
 	height: 8rem;
 	border-radius: 50%;
 	border: 1px solid var(--gray);
-	padding: 15%
+	padding: 2rem;
+}
+
+.name {
+	width: 100%;
+	text-align: center;
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
+.email {
+	width: 100%;
+	text-align: center;
+	font-weight: 500;
+	margin-bottom: 2rem;
 }
 
 .navigation {

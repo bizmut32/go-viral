@@ -32,5 +32,4 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl('/my-account');
     this.close();
   }
-
 }

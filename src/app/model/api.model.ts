@@ -1,8 +1,5 @@
-export interface SomeResult {
-    field: number;
-}
-
-export interface Needs {
+export interface Need {
+    user_id: string;
     type: string;
     frequency: number;
     duration: number;
@@ -14,7 +11,12 @@ export interface Needs {
     paymentMethod: string;
 }
 
-export interface NeedsUpdate {
+export interface Needs {
+    items: Need[];
+}
+
+export interface NeedUpdate {
+    user_id?: string;
     type?: string;
     frequency?: number;
     duration?: number
@@ -39,7 +41,8 @@ export interface Towns {
     items: Town[];
 }
 
-export interface Offers {
+export interface Offer {
+    user_id: string;
     type: string;
     description: string;
     location: any;
@@ -51,7 +54,12 @@ export interface Offers {
     skills: string[];
 }
 
-export interface OffersUpdate {
+export interface Offers {
+    items: Offer[];
+}
+
+export interface OfferUpdate {
+    user_id?: string;
     type?: string;
     description?: string;
     location?: any;
@@ -61,4 +69,49 @@ export interface OffersUpdate {
     hasCar?: boolean;
     experience?: string;
     skills?: string[];
+}
+
+export interface User {
+    password: string;
+    name: string;
+    email: string;
+    phone: string;
+    birthday: string;
+    sex: string;
+    videourl: string;
+    bio: string;
+    viewers: string[];
+    pending: string[];
+}
+
+export interface IdUser {
+    _id: string;
+    password: string;
+    name: string;
+    email: string;
+    phone: string;
+    birthday: string;
+    sex: string;
+    videourl: string;
+    bio: string;
+    viewers: string[];
+    pending: string[];
+}
+
+export interface IdUsers {
+    items: IdUser[];
+}
+
+export interface IdUserUpdate {
+    _id?: string
+    password?: string;
+    name?: string;
+    email?: string;
+    phone?: string;
+    birthday?: string;
+    sex?: string;
+    videourl?: string;
+    bio?: string;
+    viewers?: string[];
+    pending?: string[];
 }

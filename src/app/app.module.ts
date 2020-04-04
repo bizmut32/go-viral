@@ -27,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserDetailsComponent } from './main/my-account/user-details/user-details.component';
 import { MyContactsComponent } from './main/my-account/my-contacts/my-contacts.component';
 import { NotificationsComponent } from './main/my-account/notifications/notifications.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { NotificationsComponent } from './main/my-account/notifications/notifica
     ShoppingHelpComponent,
     UserDetailsComponent,
     MyContactsComponent,
+    LoadingComponent,
     NotificationsComponent
   ],
   imports: [

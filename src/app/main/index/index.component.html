@@ -35,7 +35,7 @@
           </div>
           <nav>
             <button class="button w-100" (click)="showModal(true, 'shopping')">Segítek</button>
-            <button class="button red w-100 mt-2">Segítséget kérek</button>
+            <button class="button red w-100 mt-2" (click)="showModal(false, 'shopping')">Segítséget kérek</button>
           </nav>
         </div>
       </div>
@@ -52,8 +52,8 @@
             </figure>
           </div>
           <nav>
-            <button class="button w-100">Segítek</button>
-            <button class="button red w-100 mt-2">Segítséget kérek</button>
+            <button class="button w-100" (click)="showModal(true, 'pets')">Segítek</button>
+            <button class="button red w-100 mt-2" (click)="showModal(false, 'pets')">Segítséget kérek</button>
           </nav>
         </div>
       </div>
@@ -70,8 +70,8 @@
             </figure>
           </div>
           <nav>
-            <button class="button w-100">Segítek</button>
-            <button class="button red w-100 mt-2">Segítséget kérek</button>
+            <button class="button w-100" (click)="showModal(true, 'teaching')">Segítek</button>
+            <button class="button red w-100 mt-2" (click)="showModal(false, 'teaching')">Segítséget kérek</button>
           </nav>
         </div>
       </div>
@@ -88,8 +88,8 @@
             </figure>
           </div>
           <nav>
-            <button class="button w-100">Segítek</button>
-            <button class="button red w-100 mt-2">Segítséget kérek</button>
+            <button class="button w-100" (click)="showModal(true, 'it-help')">Segítek</button>
+            <button class="button red w-100 mt-2" (click)="showModal(false, 'it-help')">Segítséget kérek</button>
           </nav>
         </div>
       </div>
@@ -106,8 +106,8 @@
             </figure>
           </div>
           <nav class="w-100">
-            <button class="button w-100">Segítek</button>
-            <button class="button red w-100 mt-2">Segítséget kérek</button>
+            <button class="button w-100" (click)="showModal(true, 'flat')">Segítek</button>
+            <button class="button red w-100 mt-2" (click)="showModal(true, 'flat')">Segítséget kérek</button>
           </nav>
         </div>
       </div>

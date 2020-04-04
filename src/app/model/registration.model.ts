@@ -32,7 +32,7 @@ export interface UserData {
     password: string;
     phone: string;
     birthDate: Date;
-    sex: boolean;
+    sex: string;
 }
 export interface PersonalData {
     email: string;

@@ -9,6 +9,7 @@ import { Need } from 'src/app/model/api.model';
 })
 export class ShoppingHelpComponent implements OnInit {
 
+  loading = false;
   needs: Need[];
   constructor(private account: AccountService) { }
 
@@ -17,7 +18,9 @@ export class ShoppingHelpComponent implements OnInit {
   }
 
   async initNeeds() {
+    this.loading = true;
     this.needs = await this.account.getUsersNeeds();
+    this.loading = false;
   }
 
   displayShoppingFrequency(n: number): string {

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule, Injectable } from '@angular/core';
+import { Routes, RouterModule, CanActivate, Router } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { IndexComponent } from './main/index/index.component';
 import { RegistrateComponent } from './registrate/registrate.component';
@@ -15,6 +15,21 @@ import { ShoppingHelpComponent } from './main/my-account/shopping-help/shopping-
 import { UserDetailsComponent } from './main/my-account/user-details/user-details.component';
 import { MyContactsComponent } from './main/my-account/my-contacts/my-contacts.component';
 import { NotificationsComponent } from './main/my-account/notifications/notifications.component';
+import { AccountService } from './services/account.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CanMyAccountActivate implements CanActivate {
+  constructor(private account: AccountService, private router: Router) {
+
+  }
+  canActivate(): Promise<boolean> | boolean {
+    if (!this.account.loggedIn)
+      this.router.navigateByUrl('/');
+    return !!this.account.loggedIn;
+  }
+}
 
 const routes: Routes = [
   { path: 'registrate/:help/:category', component: RegistrateComponent, children: [
@@ -24,7 +39,7 @@ const routes: Routes = [
     { path: 'bio', component: BioComponent }
   ]},
   { path: '', component: MainComponent, pathMatch: 'prefix', children: [
-    { path: 'my-account', component: MyAccountComponent, children: [
+    { path: 'my-account', component: MyAccountComponent, canActivate: [CanMyAccountActivate], children: [
       { path: 'shopping-help', component: ShoppingHelpComponent },
       { path: 'shopping-help/user/:userid', component: UserDetailsComponent },
       { path: 'contacts', component: MyContactsComponent },

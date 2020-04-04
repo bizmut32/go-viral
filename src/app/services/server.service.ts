@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Need, Needs, NeedUpdate, Towns, Offer, Offers, OfferUpdate, User, IdUsers, IdUser, IdUserUpdate } from '../model/api.model';
+import { Need, Needs, NeedUpdate, Towns, Offer, Offers, OfferUpdate, User, IdUsers, IdUser, IdUserUpdate, NeedWithUser, UserWithNeeds } from '../model/api.model';
 import { Request } from '../model/request.model';
 import { toBase64String } from '@angular/compiler/src/output/source_map';
 
@@ -27,12 +27,12 @@ export class ServerService {
     return new Request<{id: string}>(this.http).post('/needs', need);
   }
 
-  getNeeds(): Promise<Needs> {
-    return new Request<Needs>(this.http).get('/needs');
+  getNeeds(): Promise<{ items: NeedWithUser[] }> {
+    return new Request<{ items: NeedWithUser[] }>(this.http).get('/needs');
   }
 
-  getNeedById(id: string): Promise<Need> {
-    return new Request<Need>(this.http).get(`/needs/${id}`);
+  getNeedById(id: string): Promise<NeedWithUser> {
+    return new Request<NeedWithUser>(this.http).get(`/needs/${id}`);
   }
 
   patchNeedById(id: string, need: NeedUpdate): Promise<any> {
@@ -55,20 +55,20 @@ export class ServerService {
     return new Request<any>(this.http).patch(`/offers/${offerId}`, offer);
   }
 
-  postUser(user: User): Promise<{id: string}> {
-    return new Request<{id: string}>(this.http).post('/users', user);
+  postUser(user: User): Promise<{_id: string}> {
+    return new Request<{_id: string}>(this.http).post('/users', user);
   }
 
-  getUsers(authHeader: string): Promise<IdUsers> {
-    return new Request<IdUsers>(this.http).header('Authorization', `Basic ${authHeader}`).get('/users');
+  getUsers(authHeader: string): Promise<{items: UserWithNeeds[]}> {
+    return new Request<{items: UserWithNeeds[]}>(this.http).header('Authorization', `Basic ${authHeader}`).get('/users');
   }
 
-  getUserById(authHeader: string, userId: string): Promise<IdUser> {
-    return new Request<IdUser>(this.http).header('Authorization', `Basic ${authHeader}`).get(`/users/${userId}`);
+  getUserById(authHeader: string, userId: string): Promise<UserWithNeeds> {
+    return new Request<UserWithNeeds>(this.http).header('Authorization', `Basic ${authHeader}`).get(`/users/${userId}`);
   }
 
-  getUserMe(authHeader: string): Promise<IdUser> {
-    return new Request<IdUser>(this.http).header('Authorization', `Basic ${authHeader}`).get(`/users/me`);
+  getUserMe(authHeader: string): Promise<UserWithNeeds> {
+    return new Request<UserWithNeeds>(this.http).header('Authorization', `Basic ${authHeader}`).get(`/users/me`);
   }
 
   patchUserMe(authHeader, me: IdUserUpdate): Promise<any> {

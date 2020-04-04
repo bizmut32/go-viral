@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegistrationData, PersonalData, UserData, BioData, ShoppingData } from 'src/app/model/registration.model';
 import { RegistrationService } from 'src/app/services/registration.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
 import { ServerService } from 'src/app/services/server.service';
 import { User, Need } from 'src/app/model/api.model';
@@ -14,9 +14,11 @@ import { User, Need } from 'src/app/model/api.model';
 export class CheckComponent implements OnInit {
   help: boolean;
   result: RegistrationData;
+  loading = false;
   constructor(private link: ActivatedRoute,
     private registration: RegistrationService,
     public account: AccountService,
+    private router: Router,
     private server: ServerService) {}
 
   ngOnInit() {
@@ -29,6 +31,7 @@ export class CheckComponent implements OnInit {
   }
 
   async next() {
+    this.loading = true;
     if (!this.account.loggedIn)
       this.registrate();
     else {
@@ -71,6 +74,8 @@ export class CheckComponent implements OnInit {
       flatSpec: null
     };
     await this.server.postNeed(need);
+    this.loading = false;
+    this.router.navigateByUrl('/my-account');
   }
 
   async registrate() {
@@ -90,9 +95,8 @@ export class CheckComponent implements OnInit {
       email: person.email,
       password: person.password
     };
-    console.log(this.account.account);
     const userId = await this.server.postUser(user);
-    this.uploadNeed(userId);
+    this.uploadNeed(userId._id);
   }
 
 }

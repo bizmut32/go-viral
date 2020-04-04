@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { PersonalData } from '../model/registration.model';
 import { ServerService } from './server.service';
-import { Need, User, Needs } from '../model/api.model';
+import { Need, User, Needs, NeedWithUser } from '../model/api.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +9,15 @@ import { Need, User, Needs } from '../model/api.model';
 export class AccountService {
 
   get loggedIn(): boolean { return this.account !== null; }
-  account: PersonalData;
+  account: PersonalData = null;
   userId: string;
 
   constructor(private server: ServerService) { }
+
+  login(email: string, password: string): Promise<any> {
+    this.account = { email, password };
+    return this.server.getUserMe(this.getAuthHeader());
+  }
 
   getUserId(): Promise<string> {
     if (this.userId) return Promise.resolve(this.userId);
@@ -28,9 +33,10 @@ export class AccountService {
 
   async getUsersNeeds(): Promise<Need[]> {
     const userId = await this.getUserId();
-    const allNeeds: Need[] = await this.server.getNeeds().then((result: Needs) => result.items);
+    const allNeeds: NeedWithUser[] = await this.server.getNeeds().then((result) => result.items);
     const myNeed = allNeeds.find(need => need.user_id === userId);
     const needsInMyCategory = allNeeds.filter(need =>
+        need.user_id !== myNeed.user_id &&
         need.type === myNeed.type &&
         (Math.abs(need.location.zip - myNeed.location.zip) < 500) || need.location.city === myNeed.location.city);
     return needsInMyCategory;

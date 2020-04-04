@@ -19,7 +19,7 @@ export interface NeedUpdate {
     user_id?: string;
     type?: string;
     frequency?: number;
-    duration?: number
+    duration?: number;
     description?: string;
     location?: any;
     level?: string;
@@ -102,7 +102,7 @@ export interface IdUsers {
 }
 
 export interface IdUserUpdate {
-    _id?: string
+    _id?: string;
     password?: string;
     name?: string;
     email?: string;
@@ -113,4 +113,13 @@ export interface IdUserUpdate {
     bio?: string;
     viewers?: string[];
     pending?: string[];
+}
+
+export interface UserWithNeeds extends IdUser {
+    needs: Need[];
+    offers: Offer[];
+}
+
+export interface NeedWithUser extends Need {
+    user: User;
 }

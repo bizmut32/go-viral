@@ -14,6 +14,9 @@ export class MyAccountComponent implements OnInit {
   constructor(private router: Router, public account: AccountService, private link: ActivatedRoute) { }
 
   ngOnInit() {
-    this.account.getUserData().then(userData => this.user = userData);
+    this.account.getUserData().then(userData => {
+      this.user = userData;
+      this.router.navigate(['shopping-help'], {relativeTo: this.link});
+    });
   }
 }

@@ -17,7 +17,9 @@ export class PersonalComponent implements OnInit {
     email: '',
     password: '',
     name: '',
-    phone: ''
+    phone: '',
+    birthDate: new Date(),
+    sex: 'male'
   };
 
   @ViewChild('form') form;

@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
   @Input() visible: boolean = true;
   @Output() visibleChange = new EventEmitter<boolean>();
 
+  email: string = '';
+  password: string = '';
   constructor(public account: AccountService, private router: Router) { }
 
   ngOnInit() {
@@ -24,11 +26,8 @@ export class LoginComponent implements OnInit {
     this.visibleChange.next(this.visible);
   }
 
-  login() {
-    this.account.account = {
-      email: 'kjbwrfiebw',
-      password: 'password'
-    };
+  async login() {
+    await this.account.login(this.email, this.password);
     this.router.navigateByUrl('/my-account');
     this.close();
   }

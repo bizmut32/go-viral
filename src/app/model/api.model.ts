@@ -1,5 +1,10 @@
 export interface SomeResult {
-    field: number;
+    errorSuccess: number;
+}
+
+export interface SomeResult2 {
+    errorSuccess: number;
+    id: string;
 }
 
 export interface Need {
@@ -45,7 +50,7 @@ export interface Towns {
     items: Town[];
 }
 
-export interace Offer {
+export interface Offer {
     user_id: string;
     type: string;
     description: string;
@@ -62,7 +67,7 @@ export interface Offers {
     items: Offer[];
 }
 
-export interace OfferUpdate {
+export interface OfferUpdate {
     user_id?: string;
     type?: string;
     description?: string;
@@ -73,4 +78,49 @@ export interace OfferUpdate {
     hasCar?: boolean;
     experience?: string;
     skills?: string[];
+}
+
+export interface User {
+    password: string;
+    name: string;
+    email: string;
+    phone: string;
+    birthday: string;
+    sex: string;
+    videourl: string;
+    bio: string;
+    viewers: string[];
+    pending: string[];
+}
+
+export interface IdUser {
+    _id: string;
+    password: string;
+    name: string;
+    email: string;
+    phone: string;
+    birthday: string;
+    sex: string;
+    videourl: string;
+    bio: string;
+    viewers: string[];
+    pending: string[];
+}
+
+export interface IdUsers {
+    items: IdUser[];
+}
+
+export interface IdUserUpdate {
+    _id?: string
+    password?: string;
+    name?: string;
+    email?: string;
+    phone?: string;
+    birthday?: string;
+    sex?: string;
+    videourl?: string;
+    bio?: string;
+    viewers?: string[];
+    pending?: string[];
 }

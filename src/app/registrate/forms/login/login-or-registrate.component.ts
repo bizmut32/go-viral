@@ -32,23 +32,22 @@ export class LoginOrRegistrateComponent implements OnInit {
 
   login() {
     this.account.account = {
-      name: 'Balassa Ádám',
-      email: 'kjbwrfiebw',
-      phone: 'uwqhlfew',
-      password: 'password'
+      email: this.loginData.email,
+      password: this.loginData.password,
     };
     this.next();
   }
 
   registrate() {
     this.registration.registrationData.login = this.loginData;
+    console.log("need to reg", this.account)
     this.registration.registrate.next();
   }
 
   next() {
     this.registration.registrationData.login = this.loginData;
     this.registration.registrationData.personal = {
-      ...this.loginData, phone: '+36 30 680 3465', name: 'Balassa Ádám'
+      ...this.loginData
     };
     this.registration.next.next();
   }

@@ -15,3 +15,7 @@ textarea.input {
 	display: flex;
 	justify-content: space-between;
 }
+
+.nowrap {
+	white-space: nowrap;
+}

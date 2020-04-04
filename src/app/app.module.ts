@@ -22,6 +22,7 @@ import { HelpComponent } from './main/help/help.component';
 import { LoginOrRegistrateComponent } from './registrate/forms/login/login-or-registrate.component';
 import { MyAccountComponent } from './main/my-account/my-account.component';
 import { ShoppingHelpComponent } from './main/my-account/shopping-help/shopping-help.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ShoppingHelpComponent } from './main/my-account/shopping-help/shopping-
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

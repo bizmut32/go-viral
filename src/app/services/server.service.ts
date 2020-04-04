@@ -18,8 +18,6 @@ export class ServerService {
     return new Request<Towns>(this.http).get(`/towns/${zipcode}`);
   }
 
-
-
   postNeed(need: Need): Promise<any> {
     return new Request<any>(this.http).post('/needs', need);
   }
@@ -35,8 +33,6 @@ export class ServerService {
   patchNeedById(id: string, need: NeedUpdate): Promise<any> {
     return new Request<any>(this.http).patch(`/needs/${id}`, need);
   }
-
-
 
   postOffer(offer: Offer): Promise<any> {
     return new Request<any>(this.http).post('/offers', offer);
@@ -54,30 +50,28 @@ export class ServerService {
     return new Request<any>(this.http).patch(`/offers/${offerId}`, offer);
   }
 
-
-
   postUser(user: User): Promise<string> {
     return new Request<string>(this.http).post('/users', user);
   }
 
   getUsers(authHeader: string): Promise<IdUsers> {
-    return new Request<IdUsers>(this.http).header('Authorization', `Bearer ${authHeader}`).get('/users');
+    return new Request<IdUsers>(this.http).header('Authorization', `Basic ${authHeader}`).get('/users');
   }
 
   getUserById(authHeader: string, userId: string): Promise<IdUser> {
-    return new Request<IdUser>(this.http).header('Authorization', `Bearer ${authHeader}`).get(`/users/${userId}`);
+    return new Request<IdUser>(this.http).header('Authorization', `Basic ${authHeader}`).get(`/users/${userId}`);
   }
 
   getUserMe(authHeader: string): Promise<IdUser> {
-    return new Request<IdUser>(this.http).header('Authorization', `Bearer ${authHeader}`).get(`/users/me`);
+    return new Request<IdUser>(this.http).header('Authorization', `Basic ${authHeader}`).get(`/users/me`);
   }
 
   patchUserMe(authHeader, me: IdUserUpdate): Promise<any> {
-    return new Request<any>(this.http).header('Authorization', `Bearer ${authHeader}`).patch(`/users/me`, me);
+    return new Request<any>(this.http).header('Authorization', `Basic ${authHeader}`).patch(`/users/me`, me);
   }
 
   postRequestAccessById(authHeader: string, userId: string): Promise<any> {
-    return new Request<any>(this.http).header('Authorization', `Bearer ${authHeader}`).post(`/requestAccess/${userId}`, authHeader);
+    return new Request<any>(this.http).header('Authorization', `Basic ${authHeader}`).post(`/requestAccess/${userId}`, authHeader);
   }
 
 }

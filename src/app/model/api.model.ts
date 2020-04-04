@@ -79,7 +79,6 @@ export interface User {
     birthday: string;
     sex: string;
     videourl: string;
-    bio: string;
     viewers: string[];
     pending: string[];
 }

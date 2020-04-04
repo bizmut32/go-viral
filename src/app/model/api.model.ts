@@ -39,7 +39,7 @@ export interface Towns {
     items: Town[];
 }
 
-export interace Offers {
+export interface Offers {
     type: string;
     description: string;
     location: any;
@@ -51,7 +51,7 @@ export interace Offers {
     skills: string[];
 }
 
-export interace OffersUpdate {
+export interface OffersUpdate {
     type?: string;
     description?: string;
     location?: any;

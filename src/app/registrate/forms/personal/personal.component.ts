@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { animation } from 'src/app/components/animations';
 import { Subscription } from 'rxjs';
 import { RegistrationService } from 'src/app/services/registration.service';
+import { PersonalData } from 'src/app/model/registration.model';
 
 @Component({
   selector: 'app-personal',
@@ -12,16 +13,28 @@ import { RegistrationService } from 'src/app/services/registration.service';
 export class PersonalComponent implements OnInit {
   help: boolean;
 
-  name: string;
-  email: string;
-  password: string;
-  phone: string;
+  personalData: PersonalData = {
+    name: '',
+    email: '',
+    password: '',
+    phone: ''
+  };
 
   @ViewChild('form') form;
   constructor(private link: ActivatedRoute, private registration: RegistrationService) {}
 
   ngOnInit() {
     this.setRegistrationType(this.link.snapshot.parent.params);
+    console.log(this.registration.registrationData);
+
+    if (this.registration.registrationData.personal) {
+      this.personalData.email = this.registration.registrationData.personal.email;
+      this.personalData.password = this.registration.registrationData.personal.password;
+    }
+    else if (this.registration.registrationData.login) {
+      this.personalData.email = this.registration.registrationData.login.email;
+      this.personalData.password = this.registration.registrationData.login.password;
+    }
   }
 
   setRegistrationType(params) {
@@ -30,7 +43,7 @@ export class PersonalComponent implements OnInit {
 
   next() {
     this.registration.registrationData.personal = {
-      name: this.name, email: this.email, password: this.password, phone: this.phone
+      ...this.personalData
     };
 
     this.registration.next.next();

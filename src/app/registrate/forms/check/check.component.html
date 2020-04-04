@@ -5,7 +5,7 @@
         <img src="../../../../assets/user.png" alt="">
       </div>
       <span class="name">{{ result.personal.name }}</span>
-      <div class="row w-100 justify-content-center">
+      <div class="row w-100 justify-content-center mb-4">
         <div class="col-auto"><span><i class="fa fa-envelope mr-3"></i>{{ result.personal.email }}</span></div>
         <div class="col-auto"><span><i class="fa fa-phone mr-3"></i>{{ result.personal.phone }}</span></div>
         <div class="bio" *ngIf="result.bio && result.bio.bio">
@@ -50,5 +50,5 @@
 </div>
 <nav class="navigation">
   <button class="button gray" (click)="prev()">Vissza</button>
-  <button class="button" (click)="next()">Regisztrálok</button>
+  <button class="button" (click)="next()">Kész</button>
 </nav>

@@ -1,0 +1,74 @@
+<form ngForm class="main-form">
+  <div class="form-group">
+    <label for="zip">{{ help ? 'Hol tudna segíteni?' : 'Hol kérne segítséget' }}</label>
+    <div class="row w-100">
+      <div class="d-flex align-items-center col-md-7">
+        <app-form-alert message="Hibás irányítószám" [alerted]="false">
+              <input 
+                type="text" 
+                class="input" 
+                id="zip" 
+                placeholder="Irányítószám"
+                name="zip"
+                [(ngModel)]="zip"
+                (keyup)="zipChanged()"
+              >
+              <label class="ml-3 my-0" @appear *ngIf="city.length > 0">{{ city }}</label>  
+        </app-form-alert>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="frequency">{{ help ? 'Nagyjából milyen gyakran tudna segteni?' : 'Nagyjából miylen gyakran lenne szüksége segítségre?' }}</label>
+    <app-form-alert message="Kötelező mező" [alerted]="true">
+      <div class="row w-100">
+        <div class="d-flex col-md-7">
+          <select 
+          type="text" 
+          class="input w-100" 
+          id="frequency" 
+          value="-1"
+          name="frequency"
+          [(ngModel)]="frequency">
+            <option value="-1">Kérjük válasszon...</option>
+            <option value="0">Egyszer</option>
+            <option value="1">Naponta</option>
+            <option value="2">2 naponta</option>
+            <option value="3">Hetente kétszer</option>
+            <option value="7">Hetente egyszer</option>
+            <option value="14">Ritkábban</option>
+          </select>
+        </div>
+      </div>
+    </app-form-alert>
+  </div>
+  
+  <div class="form-group">
+    <label for="payment">{{ help ? 'Hogy tudna fizetést fogadni?' : 'Hogy tudna fizetni?' }}</label>
+    <app-form-alert message="Kötelező mező" [alerted]="false">
+      <div class="row w-100">
+        <div class="col-auto">
+          <input type="checkbox" name="" id="cash" [(ngModel)]="payment.cash" [checked]="payment.cash">
+          <label for="cash" class="form-check-label">Készpénzzel</label>
+        </div>
+        <div class="col-auto">
+          <input type="checkbox" name="" id="transfer" [(ngModel)]="payment.transfer" [checked]="payment.cash">
+          <label for="transfer" class="form-check-label">Átutalással</label>
+        </div>
+      </div>
+    </app-form-alert>
+  </div>
+  <div class="form-group flex-row">
+    <label for="description">Megjegyzés</label>
+    <div class="d-flex">
+      <textarea  
+      class="input" 
+      id="description" 
+      value="-1"
+      name="description"
+      placeholder="Pl: Csak vasárnap érek rá"
+      [(ngModel)]="description">
+  </textarea>
+    </div>
+  </div>
+</form>

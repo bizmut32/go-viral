@@ -36,7 +36,8 @@
 .card-container {
 	flex: 0 1 12rem;
 	margin: 0 1.5rem;
-	padding-bottom: 6rem;
+	padding: 10rem 0;
+	top: -10rem;
 }
 
 .help-card {
@@ -52,9 +53,9 @@
 	transition: var(--transition);
 }
 
-.help-card:hover {
+/* .help-card:hover {
 	transform: scale(1.1);
-}
+} */
 
 .help-card .card-content {
 	padding: 1rem;

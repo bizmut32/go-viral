@@ -12,14 +12,14 @@
             hol tud, pár kattintás és vmi lesz Lorem Ipsum.
           </p>
           <nav class="d-flex pt-3">
-            <button class="button mr-4">Segíteni szeretnék</button>
-            <button class="button red">Segítséget kérnék</button>
+            <button class="button mr-4" (click)="scrollToHelp()">Segíteni szeretnék</button>
+            <button class="button red" (click)="scrollToHelp()">Segítséget kérnék</button>
           </nav>
         </div>
       </article>
     </div>
   </section>
-  <section class="categories-section container-fluid col-10">
+  <section #help class="categories-section container-fluid col-10">
     <div class="row justify-content-center">
       <div class="card-container mb-3">
         <div class="help-card">

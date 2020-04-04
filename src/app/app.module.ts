@@ -9,6 +9,11 @@ import { MainComponent } from './main/main.component';
 import { IndexComponent } from './main/index/index.component';
 import { HeaderComponent } from './main/header/header.component';
 import { LoginComponent } from './main/login/login.component';
+import { RegistrateComponent } from './registrate/registrate.component';
+import { ShoppingComponent } from './registrate/forms/shopping/shopping.component';
+import { AutocompleteSelectorComponent } from './components/autocomplete-selector/autocomplete-selector.component';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { FormAlertComponent } from './components/form-alert/form-alert.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +21,12 @@ import { LoginComponent } from './main/login/login.component';
     MainComponent,
     IndexComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    RegistrateComponent,
+    ShoppingComponent,
+    AutocompleteSelectorComponent,
+    CheckboxComponent,
+    FormAlertComponent
   ],
   imports: [
     BrowserModule,

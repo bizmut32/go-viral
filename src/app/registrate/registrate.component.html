@@ -1,0 +1,23 @@
+<div class="main-container container p-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-sm-12">
+      <div class="registration-window">
+        <div class="indicators-container">
+          <div class="indicators">
+            <div class="indicator" [ngClass]="{'active': i === currentStep, 'done': i < currentStep}" *ngFor="let step of steps; let i = index">
+              <div class="indicator-box"></div>
+              <span>{{ step.title }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-content">
+          <router-outlet></router-outlet>
+        </div>
+        <nav class="navigation">
+          <button class="button gray">Előző</button>
+          <button class="button">Következő</button>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>

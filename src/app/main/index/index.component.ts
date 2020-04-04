@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-index',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
+  @ViewChild('help') help: ElementRef<HTMLElement>;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  scrollToHelp() {
+    this.help.nativeElement.scrollIntoView({behavior: 'smooth'});
   }
 
 }

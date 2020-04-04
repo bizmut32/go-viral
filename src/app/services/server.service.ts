@@ -12,7 +12,7 @@ export class ServerService {
   constructor(private http: HttpClient) { }
 
   authEncode(email: string, password: string) {
-    return btoa(email + ":" + password)
+    return btoa(email + ':' + password);
   }
 
   getTowns(): Promise<Towns> {
@@ -23,8 +23,8 @@ export class ServerService {
     return new Request<Towns>(this.http).get(`/towns/${zipcode}`);
   }
 
-  postNeed(need: Need): Promise<any> {
-    return new Request<any>(this.http).post('/needs', need);
+  postNeed(need: Need): Promise<{id: string}> {
+    return new Request<{id: string}>(this.http).post('/needs', need);
   }
 
   getNeeds(): Promise<Needs> {
@@ -55,8 +55,8 @@ export class ServerService {
     return new Request<any>(this.http).patch(`/offers/${offerId}`, offer);
   }
 
-  postUser(user: User): Promise<string> {
-    return new Request<string>(this.http).post('/users', user);
+  postUser(user: User): Promise<{id: string}> {
+    return new Request<{id: string}>(this.http).post('/users', user);
   }
 
   getUsers(authHeader: string): Promise<IdUsers> {
@@ -77,6 +77,10 @@ export class ServerService {
 
   postRequestAccessById(authHeader: string, userId: string): Promise<any> {
     return new Request<any>(this.http).header('Authorization', `Basic ${authHeader}`).post(`/requestAccess/${userId}`, authHeader);
+  }
+
+  getUserContacts(userId: string, authHeader: string): Promise<Need> {
+    return new Request<any>(this.http).header('Authorization', `Basic ${authHeader}`).get(`/users/${userId}/contacts`,);
   }
 
 }

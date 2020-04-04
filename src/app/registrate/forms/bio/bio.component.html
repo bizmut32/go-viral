@@ -21,7 +21,7 @@
     <div class="video-container my-4" [ngStyle]="{'display': !videoVisible ? 'none' : 'flex'}">
       <video class="camera-view" id="camera--view" autoplay playsinline #cameraView></video>
       <div class="bottom">
-        <button class="record button red" (click)="toggleRecording()">{{ isRecording ? 'Kész' : ( recordingTime !== indefined ? 'Törlés és új készítése' : 'Felvétel indítása') }}</button>
+        <button class="record button red" (click)="toggleRecording()">{{ isRecording ? 'Kész' : ( recordingTime !== undefined ? 'Törlés és új készítése' : 'Felvétel indítása') }}</button>
         <span *ngIf="recordingTime !== undefined">{{ recordingTime | time }}</span>
       </div>
     </div>

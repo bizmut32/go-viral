@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   @Input() visible: boolean = true;
   @Output() visibleChange = new EventEmitter<boolean>();
 
-  constructor(private account: AccountService, private router: Router) { }
+  constructor(public account: AccountService, private router: Router) { }
 
   ngOnInit() {
   }

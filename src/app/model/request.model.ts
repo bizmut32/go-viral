@@ -8,13 +8,13 @@ export class Request<ResultType = any> {
   private data: string;
 
   private http: HttpClient;
-  private headers: HttpHeaders;
+  private headers: HttpHeaders = new HttpHeaders();
   constructor(http: HttpClient) {
     this.http = http;
   }
 
   public header(key: string, value: string): Request<ResultType> {
-    this.headers.append(key, value);
+    this.headers = this.headers.append(key, value);
     return this;
   }
 

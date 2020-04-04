@@ -31,11 +31,15 @@ export class LoginOrRegistrateComponent implements OnInit {
     this.help = params.help === 'help';
   }
 
-  login() {
+  async login() {
     this.account.account = {
       email: this.loginData.email,
       password: this.loginData.password,
     };
+    var token = this.server.authEncode(this.account.account.email,this.account.account.email)
+    console.log(token);
+    var ret = await this.server.getUserMe(token)
+    console.log(ret)
     this.next();
   }
 

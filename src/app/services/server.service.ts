@@ -66,23 +66,23 @@ export class ServerService {
   }
 
   getUsers(authHeader: string): Promise<IdUsers> {
-    return new Request<IdUsers>(this.http).header('Authorization', `Bearer ${authHeader}`).get('/users');
+    return new Request<IdUsers>(this.http).header('Authorization', `Basic ${authHeader}`).get('/users');
   }
 
   getUserById(authHeader: string, userId: string): Promise<IdUser> {
-    return new Request<IdUser>(this.http).header('Authorization', `Bearer ${authHeader}`).get(`/users/${userId}`);
+    return new Request<IdUser>(this.http).header('Authorization', `Basic ${authHeader}`).get(`/users/${userId}`);
   }
 
   getUserMe(authHeader: string): Promise<IdUser> {
-    return new Request<IdUser>(this.http).header('Authorization', `Bearer ${authHeader}`).get(`/users/me`);
+    return new Request<IdUser>(this.http).header('Authorization', `Basic ${authHeader}`).get(`/users/me`);
   }
 
   patchUserMe(authHeader, me: IdUserUpdate): Promise<any> {
-    return new Request<any>(this.http).header('Authorization', `Bearer ${authHeader}`).patch(`/users/me`, me);
+    return new Request<any>(this.http).header('Authorization', `Basic ${authHeader}`).patch(`/users/me`, me);
   }
 
   postRequestAccessById(authHeader: string, userId: string): Promise<any> {
-    return new Request<any>(this.http).header('Authorization', `Bearer ${authHeader}`).post(`/requestAccess/${userId}`, authHeader);
+    return new Request<any>(this.http).header('Authorization', `Basic ${authHeader}`).post(`/requestAccess/${userId}`, authHeader);
   }
 
 }

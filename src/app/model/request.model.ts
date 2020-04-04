@@ -13,6 +13,11 @@ export class Request<ResultType = any> {
     this.http = http;
   }
 
+  public header(key: string, value: string): Request<ResultType> {
+    this.headers.append(key, value);
+    return this;
+  }
+
   public get(url: string): Promise<ResultType> {
     this.url = url;
     this.method = 'get';

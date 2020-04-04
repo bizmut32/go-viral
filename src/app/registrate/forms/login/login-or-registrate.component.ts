@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { RegistrationService } from 'src/app/services/registration.service';
 import { LoginData } from 'src/app/model/registration.model';
 import { AccountService } from 'src/app/services/account.service';
+import { ServerService } from 'src/app/services/server.service';
 
 @Component({
   selector: 'app-login-or-registrate',
@@ -20,7 +21,7 @@ export class LoginOrRegistrateComponent implements OnInit {
   };
 
   @ViewChild('form') form;
-  constructor(private link: ActivatedRoute, private registration: RegistrationService, public account: AccountService) {}
+  constructor(private link: ActivatedRoute, private registration: RegistrationService, public account: AccountService, private server: ServerService) {}
 
   ngOnInit() {
     this.setRegistrationType(this.link.snapshot.parent.params);
@@ -30,17 +31,20 @@ export class LoginOrRegistrateComponent implements OnInit {
     this.help = params.help === 'help';
   }
 
-  login() {
+  async login() {
     this.account.account = {
       email: this.loginData.email,
       password: this.loginData.password,
     };
+    var token = this.server.authEncode(this.account.account.email,this.account.account.email)
+    console.log(token);
+    var ret = await this.server.getUserMe(token)
+    console.log(ret)
     this.next();
   }
 
   registrate() {
     this.registration.registrationData.login = this.loginData;
-    console.log("need to reg", this.account)
     this.registration.registrate.next();
   }
 

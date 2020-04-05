@@ -121,5 +121,10 @@ export interface UserWithNeeds extends IdUser {
 }
 
 export interface NeedWithUser extends Need {
-    user: User;
+    user: IdUser;
+}
+
+
+export interface OfferWitthUser extends Offer {
+    user: IdUser;
 }

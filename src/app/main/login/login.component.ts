@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { animation } from 'src/app/components/animations';
 import { AccountService } from 'src/app/services/account.service';
 import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   email: string = '';
   password: string = '';
-  constructor(public account: AccountService, private router: Router) { }
+  constructor(public account: AccountService, private router: Router, private noti: NotifierService) { }
 
   ngOnInit() {
   }
@@ -27,8 +28,12 @@ export class LoginComponent implements OnInit {
   }
 
   async login() {
-    await this.account.login(this.email, this.password);
-    this.router.navigateByUrl('/my-account');
-    this.close();
+    try {
+      await this.account.login(this.email, this.password);
+      this.router.navigateByUrl('/my-account');
+      this.close();
+    } catch(err) {
+      this.noti.notify('error', 'Hibás bejelentkezés');
+    }
   }
 }

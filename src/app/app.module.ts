@@ -28,6 +28,7 @@ import { UserDetailsComponent } from './main/my-account/user-details/user-detail
 import { MyContactsComponent } from './main/my-account/my-contacts/my-contacts.component';
 import { NotificationsComponent } from './main/my-account/notifications/notifications.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { NotifierModule } from 'angular-notifier';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NotifierModule
   ],
   providers: [],
   bootstrap: [AppComponent]

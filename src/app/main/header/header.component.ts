@@ -18,4 +18,8 @@ export class HeaderComponent implements OnInit {
     this.loginVisible = true;
   }
 
+  logout( ) {
+    this.account.account = null;
+  }
+
 }

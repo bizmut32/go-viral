@@ -7,6 +7,7 @@ import { LoginData } from 'src/app/model/registration.model';
 import { AccountService } from 'src/app/services/account.service';
 import { ServerService } from 'src/app/services/server.service';
 import { User } from 'src/app/model/api.model';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-login-or-registrate',
@@ -22,8 +23,8 @@ export class LoginOrRegistrateComponent implements OnInit {
   };
 
   @ViewChild('form') form;
-  constructor(private link: ActivatedRoute, private registration: RegistrationService, 
-    public account: AccountService, private server: ServerService) {}
+  constructor(private link: ActivatedRoute, private registration: RegistrationService,
+    public account: AccountService, private server: ServerService, private noti: NotifierService) {}
 
   ngOnInit() {
     this.setRegistrationType(this.link.snapshot.parent.params);
@@ -34,13 +35,17 @@ export class LoginOrRegistrateComponent implements OnInit {
   }
 
   async login() {
-    this.account.account = {
-      email: this.loginData.email,
-      password: this.loginData.password,
-    };
-    const token = this.server.authEncode(this.account.account.email, this.account.account.password);
-    const ret = await this.server.getUserMe(token);
-    this.next(ret);
+    try {
+      this.account.account = {
+        email: this.loginData.email,
+        password: this.loginData.password,
+      };
+      const token = this.server.authEncode(this.account.account.email, this.account.account.password);
+      const ret = await this.server.getUserMe(token);
+      this.next(ret);
+    } catch(err) {
+      this.noti.notify('error', 'Login failed');
+    }
   }
 
   registrate() {

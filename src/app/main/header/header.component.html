@@ -10,12 +10,15 @@
 			<a href="#about"><span>Rólunk</span></a>
 		</div>
 	</nav>
-	<nav class="d-flex flex-column">
+	<nav class="d-flex flex">
 		<div class="header-item login" (click)="login()" *ngIf="!account.loggedIn">
 			<span>Bejelentkezés</span>
 		</div>
 		<div class="header-item login" routerLink="/my-account" *ngIf="account.loggedIn">
 			<span>Fiókom</span>
+		</div>
+		<div class="header-item login" routerLink="/" (click)="logout()" *ngIf="account.loggedIn">
+			<span>Kijelentkezés</span>
 		</div>
 		<div class="hedaer-item">
 			<span></span>

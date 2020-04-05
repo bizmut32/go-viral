@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
 import { ServerService } from 'src/app/services/server.service';
 import { User, Need, Offer } from 'src/app/model/api.model';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-check',
@@ -19,6 +20,7 @@ export class CheckComponent implements OnInit {
     private registration: RegistrationService,
     public account: AccountService,
     private router: Router,
+    private noti: NotifierService,
     private server: ServerService) {}
 
   ngOnInit() {
@@ -32,11 +34,16 @@ export class CheckComponent implements OnInit {
 
   async next() {
     this.loading = true;
-    if (!this.account.loggedIn || this.account.account.email === this.registration.registrationData.login.email)
-      this.registrate();
-    else {
-      const userId = await this.account.getUserId();
-      this.uploadOffer(userId);
+    try {
+      if (!this.account.loggedIn || this.account.account.email !== this.registration.registrationData.login.email)
+        this.registrate();
+      else {
+        const userId = await this.account.getUserId();
+        this.uploadOffer(userId);
+      }
+    } catch(err) {
+      this.loading = false;
+      this.noti.notify('error', 'Hiba történt');
     }
   }
 
@@ -71,16 +78,21 @@ export class CheckComponent implements OnInit {
       paymentMethod: shopping.payment.transfer ? 'transfer' : '' +
         shopping.payment.transfer && shopping.payment.cash ? ',' : '' +
         shopping.payment.cash ? 'cash' : '',
-      description: shopping.description,
+      description: shopping.description || '-',
       level: null,
       flatSpec: null,
-      hasCar: false,
+      hasCar: true,
       experience: '',
       skills: []
     };
-    await this.server.postOffer(offer);
-    this.loading = false;
-    this.router.navigateByUrl('/my-account');
+    try {
+      await this.server.postOffer(offer);
+    }
+    catch (err) {}
+    finally {
+      this.loading = false;
+      this.router.navigateByUrl('/my-account');
+    }
   }
 
   async uploadNeed (userId: string) {
@@ -102,9 +114,14 @@ export class CheckComponent implements OnInit {
       subjects: null,
       flatSpec: null
     };
-    await this.server.postNeed(need);
-    this.loading = false;
-    this.router.navigateByUrl('/my-account');
+    try {
+      await this.server.postNeed(need);
+    }
+    catch (err) {}
+    finally {
+      this.loading = false;
+      this.router.navigateByUrl('/my-account');
+    }
   }
 
   async registrate() {
@@ -124,8 +141,12 @@ export class CheckComponent implements OnInit {
       email: person.email,
       password: person.password
     };
-    const userId = await this.server.postUser(user);
-    this.upload(userId._id);
+    try {
+      const userId = await this.server.postUser(user);
+      this.upload(userId._id);
+    }
+    catch (err) {
+    }
   }
 
 }

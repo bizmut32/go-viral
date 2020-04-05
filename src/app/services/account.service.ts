@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { PersonalData } from '../model/registration.model';
 import { ServerService } from './server.service';
-import { Need, User, Needs, NeedWithUser } from '../model/api.model';
+import { Need, User, Needs, NeedWithUser, Offer, OfferWitthUser } from '../model/api.model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,11 +34,12 @@ export class AccountService {
   async getUsersNeeds(): Promise<Need[]> {
     const userId = await this.getUserId();
     const allNeeds: NeedWithUser[] = await this.server.getNeeds().then((result) => result.items);
-    const myNeed = allNeeds.find(need => need.user_id === userId);
+    const allOffers: OfferWitthUser[] = await this.server.getOffers().then(result => result.items);
+    const myOffer = allOffers.find(need => need.user_id === userId);
     const needsInMyCategory = allNeeds.filter(need =>
-        need.user_id !== myNeed.user_id &&
-        need.type === myNeed.type &&
-        (Math.abs(need.location.zip - myNeed.location.zip) < 500) || need.location.city === myNeed.location.city);
+        need.user_id !== myOffer.user_id &&
+        need.type === myOffer.type &&
+        (Math.abs(need.location.zip - myOffer.location.zip) < 500) || need.location.city === myOffer.location.city);
     return needsInMyCategory;
   }
 

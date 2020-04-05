@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Need, Needs, NeedUpdate, Towns, Offer, Offers, OfferUpdate, User, IdUsers, IdUser, IdUserUpdate, NeedWithUser, UserWithNeeds } from '../model/api.model';
+import { Need, Needs, NeedUpdate, Towns, Offer, Offers, OfferUpdate, User, IdUsers, IdUser, IdUserUpdate, NeedWithUser, UserWithNeeds, OfferWitthUser } from '../model/api.model';
 import { Request } from '../model/request.model';
 import { toBase64String } from '@angular/compiler/src/output/source_map';
 
@@ -43,8 +43,8 @@ export class ServerService {
     return new Request<any>(this.http).post('/offers', offer);
   }
 
-  getOffers(): Promise<Offers> {
-    return new Request<Offers>(this.http).get('/offers');
+  getOffers(): Promise<{items: OfferWitthUser[]}> {
+    return new Request<{items: OfferWitthUser[]}>(this.http).get('/offers');
   }
 
   getOfferById(offerId: string): Promise<Offer> {

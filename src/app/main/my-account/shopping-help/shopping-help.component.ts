@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/services/account.service';
 import { Need } from 'src/app/model/api.model';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-shopping-help',
@@ -11,7 +12,7 @@ export class ShoppingHelpComponent implements OnInit {
 
   loading = false;
   needs: Need[];
-  constructor(private account: AccountService) { }
+  constructor(private account: AccountService, private noti: NotifierService) { }
 
   ngOnInit() {
     this.initNeeds();
@@ -41,6 +42,10 @@ export class ShoppingHelpComponent implements OnInit {
     // const birthDate = new Date(birthday);
     // const now = new Date();
     // return now.getFullYear() - birthDate.getFullYear();
+  }
+
+  request() {
+    this.noti.notify('success', 'Kontakt elkérve');
   }
 
 }

@@ -62,6 +62,11 @@
   --gray: #0001;
   --light: #0002;
 }
+
+.notifier__notification--material .notifier__notification-message {
+  font-size: 2rem!important;
+}
+
 body{
   background-color: var(--white);
   overflow-x: hidden;

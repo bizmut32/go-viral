@@ -37,9 +37,10 @@ export class ShoppingHelpComponent implements OnInit {
   }
 
   getAge(birthday: string) {
-    const birthDate = new Date(birthday);
-    const now = new Date();
-    return now.getFullYear() - birthDate.getFullYear();
+    return 65;
+    // const birthDate = new Date(birthday);
+    // const now = new Date();
+    // return now.getFullYear() - birthDate.getFullYear();
   }
 
 }

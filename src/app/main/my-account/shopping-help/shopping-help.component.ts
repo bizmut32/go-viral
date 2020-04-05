@@ -20,8 +20,6 @@ export class ShoppingHelpComponent implements OnInit {
   async initNeeds() {
     this.loading = true;
     this.needs = await this.account.getUsersNeeds();
-    console.log(this.needs);
-    console.log(this.displayShoppingFrequency(this.needs[0].frequency));
     this.loading = false;
   }
 

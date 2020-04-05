@@ -23,7 +23,7 @@ export class IndexComponent implements OnInit {
     this.help.nativeElement.scrollIntoView({behavior: 'smooth'});
   }
 
-  showModal(help: boolean, category: Category) {
+  showModal(help: boolean, category: string) {
     this.modalShown = true;
     const url = [help ? 'help' : 'need', category];
     this.router.navigate(url, { relativeTo: this.link });

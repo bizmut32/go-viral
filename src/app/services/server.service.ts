@@ -79,8 +79,8 @@ export class ServerService {
     return new Request<any>(this.http).header('Authorization', `Basic ${authHeader}`).post(`/requestAccess/${userId}`, authHeader);
   }
 
-  getUserContacts(userId: string, authHeader: string): Promise<Need> {
-    return new Request<any>(this.http).header('Authorization', `Basic ${authHeader}`).get(`/users/${userId}/contacts`,);
+  getUserContacts(authHeader: string): Promise<{ items: { views: IdUser[], pending: any[] } }> {
+    return new Request<any>(this.http).header('Authorization', `Basic ${authHeader}`).get(`/users/myContacts`);
   }
 
 }

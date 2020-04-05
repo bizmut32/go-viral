@@ -56,7 +56,8 @@ export class CheckComponent implements OnInit {
     else this.uploadNeed(userId);
   }
 
-  displayShoppingFrequency(n: number): string {
+  displayShoppingFrequency(n: any): string {
+    n = parseInt(n);
     switch (n) {
       case 0: return 'egyszer';
       case 1: return 'naponta';
